@@ -1,8 +1,25 @@
 const axios = require("axios");
 const { Dog, Temperament } = require("../db");
+const { where } = require("sequelize");
 
-const createDogDB = async (id, raza, temperament) => {
-  return await Dog.create({ id, raza, temperament });
+const createDogDB = async (
+  name,
+  heightMin,
+  heightMax,
+  weightMin,
+  weightMax,
+  lifeSpan,
+  image
+) => {
+  return await Dog.create({
+    name,
+    heightMin,
+    heightMax,
+    weightMin,
+    weightMax,
+    lifeSpan,
+    image,
+  });
 };
 
 const getDogByIdRaza = async (idRaza, source) => {
@@ -43,5 +60,11 @@ const getRazassByName = async (name) => {
 
   return [...dogsFiltered, ...dogDB];
 };
+
+// const getAllTemperaments = async (req, res) => {
+//   try {
+//     findAll({ where: { temperament: temperament.lenght > 0 } });
+//   } catch (error) {}
+// };
 
 module.exports = { createDogDB, getDogByIdRaza, getRazasss, getRazassByName };
