@@ -3,19 +3,28 @@ const axios = require("axios");
 
 const URL = `https://api.thedogapi.com/v1/breeds`;
 //?api_key={${DB_APIKEY}}
-const getDogsData = async (req, res) => {
+const getAllDogs = async (req, res) => {
   try {
     const { data } = await axios.get(URL);
 
-    console.log(data);
+    //console.log(data[2]);
 
-    return await data.map((dog) => {
+    const response = await data.map((dog) => {
       let [weightMin, weightMax] = dog.weight.imperial.split(" - ");
       let [heightMin, heightMax] = dog.height.imperial.split(" - ");
       let temperament = dog.hasOwnProperty("temperament")
-        ? dog.temperament.split(/\s*(?:,|$)\s*/)
-        : "";
-      result = {
+        ? dog.temperament.split(", ")
+        : [];
+
+      // console.log(dog.name);
+      // console.log(temperament);
+      // console.log(Number(weightMin));
+      // console.log(dog.life_span);
+      // console.log(dog.image.url);
+      // console.log(Number(weightMin));
+      // console.log(Number(weightMin));
+      // console.log(Number(weightMin));
+      return {
         id: dog.id,
         name: dog.name,
         weightMin: Number(weightMin),
@@ -27,12 +36,12 @@ const getDogsData = async (req, res) => {
         image: dog.image.url,
         source: "API",
       };
-      return result;
     });
+    console.log(response.length);
+    return response;
   } catch (error) {
-    console.error("getDogData: ", error.message);
-    throw new Error(error.message);
+    res.status(500).json({ error: error.message });
   }
 };
 
-module.exports = getDogsData;
+module.exports = getAllDogs;

@@ -2,19 +2,22 @@ const { Router } = require("express");
 
 const {
   getDogsHandler,
-  getRazaHandler,
+  getDetailsHandler,
   getRazassHandler,
-  getTemperamentsHandler,
+  getAllTemperamentsHandler,
+  createDogHandler,
 } = require("../handlers/todosLosHandlers");
 
 const dogsRouter = Router();
 
-dogsRouter.get("/dogs", getDogsHandler);
+dogsRouter.get("/", getDogsHandler);
 
-dogsRouter.get("/dogs/:idRaza", getRazaHandler);
+dogsRouter.get("/:idRaza", getDetailsHandler);
 
-dogsRouter.get("/dogs/name?", getRazassHandler);
+dogsRouter.get("/name?=", getRazassHandler);
 
-dogsRouter.get("/temperaments", getTemperamentsHandler);
+dogsRouter.get("/temperaments", getAllTemperamentsHandler);
+
+dogsRouter.post("/", createDogHandler);
 
 module.exports = dogsRouter;

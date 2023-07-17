@@ -1,20 +1,36 @@
+const getAllDogs = require("../controllers/getAllDogs");
 const {
   createDogDB,
-  getDogByIdRaza,
+  getDetailsByNameEnAPI,
+  getDetailsByNameEnDB,
   getRazasss,
   getRazassByName,
 } = require("../controllers/dogsControllers");
+const getTemperamentsData = require("../controllers/getTemperamentsData");
 
-const getDogsHandler = (req, res) => {
-  res.send("NIY: ESTEA RUTA TRAE LA INFO DE UN USUARIO DETERMINADO POR ID");
+console.log(getAllDogs);
+
+const getDogsHandler = async (req, res) => {
+  try {
+    const response = await getAllDogs();
+    console.log("gato");
+    res.status(200).json(response);
+  } catch (error) {
+    res.status(500).json(error);
+  }
 };
 
-const getRazaHandler = async (req, res) => {
-  const { idRaza } = req.params;
-  const source = isNaN(idRaza) ? "DB" : "API";
+const getDetailsHandler = async (req, res) => {
+  const { name } = req.params;
+  // const source = isNaN(name) ? "DB" : "API";
   try {
-    const response = await getDogByIdRaza(idRaza, source);
-    res.status(200).json(response);
+    const responseAPI = await getDetailsByNameEnAPI(name);
+    // if (responseAPI)
+    res.status(200).json(responseAPI);
+    // else {
+    // const responseDB = await getDetailsByNameEnDB(name);
+    // res.status(200).json(responseDB);
+    // }
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -37,14 +53,17 @@ const getRazassHandler = async (req, res) => {
 };
 
 const createDogHandler = async (req, res) => {
-  const { name, height, weight, life_span, temperament } = req.body;
+  const { name, heightMin, heightMax, weightMin, weightMax, lifeSpan, image } =
+    req.body;
   try {
     const response = await createDogDB(
       name,
-      height,
-      weight,
-      life_span,
-      temperament
+      heightMin,
+      heightMax,
+      weightMin,
+      weightMax,
+      lifeSpan,
+      image
     );
     res.status(200).json(response);
   } catch (error) {
@@ -52,14 +71,19 @@ const createDogHandler = async (req, res) => {
   }
 };
 
-const getTemperamentsHandler = (req, res) => {
-  res.send("NIY: ESTEA RUTA TRAE LA INFO DE UN USUARIO DETERMINADO POR ID");
+const getAllTemperamentsHandler = async (req, res) => {
+  try {
+    const response = await getTemperamentsData();
+    res.status(200).send("NIY: ESTEA RUTA TRAE todos los temperamentos");
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 };
 
 module.exports = {
   getDogsHandler,
-  getRazaHandler,
+  getDetailsHandler,
   getRazassHandler,
   createDogHandler,
-  getTemperamentsHandler,
+  getAllTemperamentsHandler,
 };

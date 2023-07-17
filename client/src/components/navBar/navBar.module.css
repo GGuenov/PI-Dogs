@@ -1,0 +1,9 @@
+.navBar {
+  margin: 0;
+  border: none;
+  outline: auto;
+  width: 250px;
+  padding: 10px;
+  line-height: 30px;
+  margin-bottom: 30px;
+}

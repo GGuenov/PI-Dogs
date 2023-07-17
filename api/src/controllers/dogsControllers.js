@@ -22,11 +22,17 @@ const createDogDB = async (
   });
 };
 
-const getDogByIdRaza = async (idRaza, source) => {
-  const dog =
-    source === "API"
-      ? (await axios.get(`https://api.thedogapi.com/v1/breeds/${idRaza}`)).data
-      : await Dog.findByPK(idRaza);
+const getDetailsByNameEnAPI = async (name) => {
+  const dog = await axios(
+    `https://api.thedlkjogapi.com/v1/breeds/search?q=${name}`
+  );
+
+  return dog;
+};
+
+const getDetailsByNameEnDB = async (name) => {
+  const dog = await Dog.findByPk(name);
+
   return dog;
 };
 //Para limpiar y/o filtrar la data que viene de la API
@@ -67,4 +73,10 @@ const getRazassByName = async (name) => {
 //   } catch (error) {}
 // };
 
-module.exports = { createDogDB, getDogByIdRaza, getRazasss, getRazassByName };
+module.exports = {
+  createDogDB,
+  getDetailsByNameEnAPI,
+  getDetailsByNameEnDB,
+  getRazasss,
+  getRazassByName,
+};
