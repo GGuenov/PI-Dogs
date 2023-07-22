@@ -1,6 +1,6 @@
 import { GET_DOGS, GET_BY_RAZA } from "../actions/actions";
 
-let initialState = { allDogs: [], dogsCopy: [] };
+let initialState = { allDogs: [], dogs: [] };
 //console.log(initialState);
 
 function rootReducer(state = initialState, action) {
@@ -11,7 +11,7 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         allDogs: action.payload,
-        dogsCopy: action.payload,
+        dogs: action.payload,
       };
     case GET_BY_RAZA:
       return {

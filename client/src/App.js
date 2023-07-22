@@ -1,4 +1,4 @@
-import { Route } from "react-router-dom/cjs/react-router-dom.min";
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Creator from "./views/creator/creator";
 import Details from "./views/detail/details";
@@ -8,10 +8,12 @@ import Landing from "./views/landing/landing";
 function App() {
   return (
     <div className="App">
-      <Route exact path="/home" component={Home} />
-      <Route exact path="/" component={Landing} />
-      <Route path="/home/:id" component={Details} />
-      <Route path="/creator" component={Creator} />
+      <Routes>
+        <Route exact path="/home" element={<Home />} />
+        <Route exact path="/" element={<Landing />} />
+        <Route path="/details/:id" element={<Details />} />
+        <Route path="/creator" element={<Creator />} />
+      </Routes>
     </div>
   );
 }

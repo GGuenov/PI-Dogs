@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
+import { NavLink } from "react-router-dom";
 //import Home from "../home/home";
 import style from "./landing.module.css";
 

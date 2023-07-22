@@ -13,21 +13,34 @@ const createDogDB = async (
 ) => {
   return await Dog.create({
     name,
-    heightMin,
-    heightMax,
-    weightMin,
-    weightMax,
+    heightMin: parseInt(heightMin),
+    heightMax: parseInt(heightMax),
+    weightMin: parseInt(weightMin),
+    weightMax: parseInt(weightMax),
     lifeSpan,
     image,
   });
 };
+//   return response && console.log("salio");
+// } catch (error) {
+//   console.log("para el orto");
+// }
 
 const getDetailsByNameEnAPI = async (name) => {
-  const dog = await axios(
-    `https://api.thedlkjogapi.com/v1/breeds/search?q=${name}`
-  );
+  try {
+    const URL = `https://api.thedogapi.com/v1/breeds/search?q=${name}`;
+    const response = await axios.get(URL);
 
-  return dog;
+    if (response.data.length > 0) {
+      const perro = response.data[0];
+      return perro;
+    } else {
+      return null;
+    }
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
 };
 
 const getDetailsByNameEnDB = async (name) => {
@@ -66,12 +79,6 @@ const getRazassByName = async (name) => {
 
   return [...dogsFiltered, ...dogDB];
 };
-
-// const getAllTemperaments = async (req, res) => {
-//   try {
-//     findAll({ where: { temperament: temperament.lenght > 0 } });
-//   } catch (error) {}
-// };
 
 module.exports = {
   createDogDB,

@@ -34,37 +34,3 @@ const cargarTemperamentosDesdeAPI = async (req, res) => {
 };
 
 module.exports = cargarTemperamentosDesdeAPI;
-
-//   try {
-//     const response = await axios.get(`https://api.thedogapi.com/v1/breeds/`);
-//     //console.log(response);
-
-//     const data = response.data;
-
-//     const temperamentosUnicos = new Set();
-//     //console.log(temperamentosUnicos);
-//     for (const object of data) {
-//       if (object.hasOwnProperty("temperament")) {
-//         const listaTemperamentos = object.temperament.split(",");
-//         //console.log(listaTemperamentos);
-
-//         for (const temperamento of listaTemperamentos) {
-//           //     temperamentosUnicos.add(temperamento.trim());
-//           //     console.log(temperamentosUnicos);
-//           //   }
-//           //   //const temperamentArray = [...temperamentosUnicos];
-//           //   //console.log(temperamentArray);
-//           // }
-//           // for (const temperamento of temperamentosUnicos) {
-//           await Temperament.findAndCreate({
-//             where: { name: temperamento.trim() },
-//           });
-//         }
-//       }
-//     }
-
-//     res.status(200).json("temperaments cargados.");
-//   } catch (error) {
-//     console.error("Error al cargar los temperamentos");
-//   }
-// };

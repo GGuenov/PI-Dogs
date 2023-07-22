@@ -10,18 +10,24 @@
 .pageNumbers {
   font-size: 15px;
   display: flex;
+  justify-content: space-around;
   list-style: none;
-  padding: 0;
+  padding: 10px;
   margin: 0;
   color: rgb(6, 31, 31);
-  border: 1px solid;
+  /* border: 1px solid; */
+  cursor: pointer;
 }
+/* .pageNumbers:hover {
+  color: blue;
+} */
 .pageNumbers li.active {
   color: red;
   font-weight: bold;
 }
 .pageNumbers li:hover {
   color: green;
+  font-size: xx-large;
 }
 .paginationontainer {
   position: relative;
@@ -52,4 +58,9 @@
 }
 .pagination button:hover {
   color: blueviolet;
+}
+.active {
+  font-weight: bolder;
+  font-size: medium;
+  color: black;
 }

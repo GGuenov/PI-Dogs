@@ -1,0 +1,14 @@
+.errores {
+  color: red;
+}
+.imputes {
+  display: flexbox;
+  justify-content: flex-end;
+}
+.imputes input {
+  background-color: rgb(154, 154, 202);
+  text-decoration: double;
+  display: table-header-group;
+  justify-content: end;
+  margin: 2%;
+}

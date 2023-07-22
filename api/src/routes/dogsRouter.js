@@ -1,5 +1,4 @@
 const { Router } = require("express");
-
 const {
   getDogsHandler,
   getDetailsHandler,
@@ -9,13 +8,13 @@ const {
 } = require("../handlers/todosLosHandlers");
 
 const dogsRouter = Router();
-
 dogsRouter.get("/", getDogsHandler);
 
-dogsRouter.get("/:idRaza", getDetailsHandler);
-
-dogsRouter.get("/name?=", getRazassHandler);
-
+dogsRouter.get("/:name", getDetailsHandler);
+// dogsRouter.get("/name?=", (req, res) => {
+//   res.send("por rasa");
+// });
+//  getRazassHandler);
 dogsRouter.get("/temperaments", getAllTemperamentsHandler);
 
 dogsRouter.post("/", createDogHandler);

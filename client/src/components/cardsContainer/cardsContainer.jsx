@@ -9,14 +9,14 @@ import Card from "../card/card";
 import style from "./cardsContainer.module.css";
 
 function CardsContainer({ allDogs }) {
-  const dogsList = allDogs;
+  // const dogsList = allDogs;
 
   const storedPage = localStorage.getItem("currentPage");
   const [currentPage, setCurrentPage] = useState(
     storedPage ? Number(storedPage) : 1
   );
 
-  const cardsPerPage = 9;
+  const cardsPerPage = 8;
 
   useEffect(() => {
     localStorage.setItem("currentPage", currentPage);
@@ -25,6 +25,11 @@ function CardsContainer({ allDogs }) {
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
+
+  useEffect(() => {
+    if (allDogs.length < 10) setCurrentPage(1);
+  }, [allDogs]);
+
   const indexOfLastCard = currentPage * cardsPerPage;
   const indexOfFirstCard = indexOfLastCard - cardsPerPage;
   const displayedCards = allDogs.slice(indexOfFirstCard, indexOfLastCard);
@@ -35,8 +40,8 @@ function CardsContainer({ allDogs }) {
     return Array.from({ length: pageNumbers }, (_, index) => (
       <li
         key={index}
-        className={currentPage === index + 1 ? "active" : ""}
-        onclick={() => handlePageChange(index + 1)}
+        className={currentPage === index + 1 ? style.active : ""}
+        onClick={() => handlePageChange(index + 1)}
       >
         {index + 1}
       </li>
@@ -75,7 +80,7 @@ function CardsContainer({ allDogs }) {
       <div className={style.sideBar}></div>
       <div className={style.texto}>
         {displayedCards?.map((dog) => (
-          <Card dog={dog} />
+          <Card key={dog.id} dog={dog} />
         ))}
       </div>
       {renderPaginationButtons()}

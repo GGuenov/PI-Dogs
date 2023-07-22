@@ -2,13 +2,13 @@ const getAllDogs = require("../controllers/getAllDogs");
 const {
   createDogDB,
   getDetailsByNameEnAPI,
-  getDetailsByNameEnDB,
+  // getDetailsByNameEnDB,
   getRazasss,
   getRazassByName,
 } = require("../controllers/dogsControllers");
 const getTemperamentsData = require("../controllers/getTemperamentsData");
 
-console.log(getAllDogs);
+// console.log(getAllDogs);
 
 const getDogsHandler = async (req, res) => {
   try {
@@ -22,20 +22,19 @@ const getDogsHandler = async (req, res) => {
 
 const getDetailsHandler = async (req, res) => {
   const { name } = req.params;
-  // const source = isNaN(name) ? "DB" : "API";
+  const source = isNaN(name) ? "DB" : "API";
   try {
     const responseAPI = await getDetailsByNameEnAPI(name);
-    // if (responseAPI)
-    res.status(200).json(responseAPI);
-    // else {
-    // const responseDB = await getDetailsByNameEnDB(name);
-    // res.status(200).json(responseDB);
-    // }
+    if (responseAPI) res.status(200).json(responseAPI);
+    else {
+      const responseDB = await getDetailsByNameEnDB(name);
+      res.status(200).json(responseDB);
+    }
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
-  //  res.send(`TRAE DE LA DB Y API LAS CARACTS. DE UNA RAZA DADA POR ${idRaza}`);
 };
+//  res.send(`TRAE DE LA DB Y API LAS CARACTS. DE UNA RAZA DADA POR ${idRaza}`);
 
 const getRazassHandler = async (req, res) => {
   const { name } = req.query;
@@ -55,17 +54,30 @@ const getRazassHandler = async (req, res) => {
 const createDogHandler = async (req, res) => {
   const { name, heightMin, heightMax, weightMin, weightMax, lifeSpan, image } =
     req.body;
+
   try {
-    const response = await createDogDB(
-      name,
-      heightMin,
-      heightMax,
-      weightMin,
-      weightMax,
-      lifeSpan,
+    if (
+      name &&
+      heightMin &&
+      heightMax &&
+      weightMin &&
+      weightMax &&
+      lifeSpan &&
       image
-    );
-    res.status(200).json(response);
+    ) {
+      const response = await createDogDB(
+        name,
+        heightMax,
+        heightMin,
+        weightMax,
+        weightMin,
+        lifeSpan,
+        image
+      );
+      res.status(200).json(response);
+    } else {
+      res.status(400).json({ error: "Missing requierd fields" });
+    }
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -74,7 +86,7 @@ const createDogHandler = async (req, res) => {
 const getAllTemperamentsHandler = async (req, res) => {
   try {
     const response = await getTemperamentsData();
-    res.status(200).send("NIY: ESTEA RUTA TRAE todos los temperamentos");
+    res.status(200).send("ARI: ESTEA RUTA TRAE todos los temperamentos");
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
