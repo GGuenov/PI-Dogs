@@ -26,6 +26,6 @@ const PORT = 3001;
 server.listen(PORT, () => {
   conn.sync({ force: false });
   console.log(`Listen on port ${PORT}`);
-  cargarTemperamentosDesdeAPI();
+  // cargarTemperamentosDesdeAPI();
   // getTemperamentsData();
 });

@@ -15,15 +15,23 @@ function Home() {
 
   // const [filtered, setFiltered] = useState(allDogs);
   const [searchString, setSearchString] = useState("");
-
   function handleChange(e) {
-    e.preventDefault();
     setSearchString(e.target.value);
   }
+  console.log(searchString);
 
   function handleSubmit(e) {
     e.preventDefault();
     dispatch(getByRaza(searchString));
+    // const filteredDogs = allDogs.filter((dog) =>
+    //   dog.name.toLowerCase().includes(searchString.toLowerCase())
+    // );
+
+    // if (filteredDogs.length !== 0) {
+    //   setFiltered(filteredDogs);
+    // } else {
+    //   setFiltered(allDogs);
+    // }
   }
 
   useEffect(() => {
@@ -38,7 +46,8 @@ function Home() {
   //   if (allDogs.length < 10) setCurrentPage(1);
   // }, [allDogs]);
 
-  // console.log(allDogs);
+  // console.log(filtered);
+  console.log(allDogs);
 
   return (
     <div className={style.home}>

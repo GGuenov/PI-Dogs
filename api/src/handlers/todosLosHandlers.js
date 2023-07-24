@@ -2,11 +2,11 @@ const getAllDogs = require("../controllers/getAllDogs");
 const {
   createDogDB,
   getDetailsByNameEnAPI,
-  // getDetailsByNameEnDB,
+  getDetailsByNameEnDB,
   getRazasss,
   getRazassByName,
 } = require("../controllers/dogsControllers");
-const getTemperamentsData = require("../controllers/getTemperamentsData");
+const cargarTemperamentosDesdeAPI = require("../controllers/getTemperamentsData");
 
 // console.log(getAllDogs);
 
@@ -85,8 +85,8 @@ const createDogHandler = async (req, res) => {
 
 const getAllTemperamentsHandler = async (req, res) => {
   try {
-    const response = await getTemperamentsData();
-    res.status(200).send("ARI: ESTEA RUTA TRAE todos los temperamentos");
+    const response = await cargarTemperamentosDesdeAPI();
+    res.status(200).json(response);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
