@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
 import validate from "./validation";
 import style from "./creator.module.css";
 import axios from "axios";
@@ -11,7 +12,9 @@ const Creator = () => {
     alturaMin: "",
     pesoMax: "",
     pesoMin: "",
-    añosDeVida: "",
+    lifeSpan: "",
+    image: "",
+    temperament: [],
   });
 
   const [errors, setErrors] = useState({
@@ -20,8 +23,9 @@ const Creator = () => {
     alturaMin: "",
     pesoMax: "",
     pesoMin: "",
-    añosDeVida: "",
+    lifeSpan: "",
     image: "",
+    temperament: "",
   });
 
   const changeHandler = (event) => {
@@ -31,98 +35,163 @@ const Creator = () => {
     setForm({ ...form, [property]: value });
   };
 
-  const submitHandler = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    axios.post("http://localhost:3001/dogs/", form).then((res) => alert(res));
+
+    const heightMin = parseInt(form.alturaMin);
+    const heightMax = parseInt(form.alturaMax);
+    const weightMin = parseInt(form.pesoMin);
+    const weightMax = parseInt(form.pesoMax);
+
     console.log(form);
+    console.log(weightMin);
+    console.log(weightMax);
+    console.log(heightMax);
+    console.log(heightMin);
+    try {
+      const response = await axios.post("http://localhost:3001/dogs/", {
+        ...form,
+        heightMin,
+        heightMax,
+        weightMin,
+        weightMax,
+      });
+      console.log(form);
+      alert("Perro creado, Gran trabajo!");
+      console.log(response);
+    } catch (error) {
+      console.error(error);
+      alert(error.response.data.error);
+    }
   };
 
-  return (
-    <form className={style.imputes} onSubmit={submitHandler}>
-      <h1>Crea tu propio perro:</h1>
-      <div>
-        <label>Nombre</label>
-        <input
-          type="text"
-          value={form.name}
-          onChange={changeHandler}
-          name="name"
-        />
-        {errors.name && <span className={style.errores}>{errors.name}</span>}
-      </div>
-      <div>
-        <label>Altura Máxima</label>
-        <input
-          type="number"
-          value={form.alturaMax}
-          onChange={changeHandler}
-          name="alturaMax"
-        />
-        {errors.alturaMax && (
-          <span className={style.errores}>{errors.alturaMax}</span>
-        )}
-      </div>
-      <div>
-        <label>Altura Mínima</label>
-        <input
-          type="number"
-          value={form.alturaMin}
-          onChange={changeHandler}
-          name="alturaMin"
-        />
-        {errors.alturaMin && (
-          <span className={style.errores}>{errors.alturaMin}</span>
-        )}
-      </div>
-      <div>
-        <label>Peso Máximo</label>
-        <input
-          type="number"
-          value={form.pesoMax}
-          onChange={changeHandler}
-          name="pesoMax"
-        />
-        {errors.pesoMax && (
-          <span className={style.errores}>{errors.pesoMax}</span>
-        )}
-      </div>
-      <div>
-        <label>Peso Mínima</label>
-        <input
-          type="number"
-          value={form.pesoMin}
-          onChange={changeHandler}
-          name="pesoMin"
-        />
-        {errors.pesoMin && (
-          <span className={style.errores}>{errors.pesoMin}</span>
-        )}
-      </div>
+  const URLTemps = "http://localhost:3001/temperaments";
 
-      <div>
-        <label>Años de vida</label>
-        <input
-          type="text"
-          value={form.añosDeVida}
-          onChange={changeHandler}
-          name="añosDeVida"
-        />
-        {errors.añosDeVida && (
-          <span className={style.errores}>{errors.añosDeVida}</span>
-        )}
-      </div>
-      <div>
-        <label>Imagen</label>
-        <input
-          type="url"
-          value={form.image}
-          onChange={changeHandler}
-          name="image"
-        />
-        {errors.image && <span className={style.errores}>{errors.image}</span>}
-      </div>
-      <button type="submit">Crear!</button>
-    </form>
+  const [temps, setTemps] = useState([]);
+
+  useEffect(() => {
+    const fetchTemps = async () => {
+      try {
+        const res = await axios.get(URLTemps);
+        const data = await res.data;
+        setTemps(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchTemps();
+  }, []);
+
+  const listTemps = temps.map((temperament) => (
+    <option key={temperament.id} value={temperament.id}>
+      {temperament.name}{" "}
+    </option>
+  ));
+
+  return (
+    <div>
+      <NavLink to="/home">
+        <button className={style.button}>Volver!</button>
+      </NavLink>
+      <form className={style.imputes} onSubmit={handleSubmit}>
+        <h1>Crea tu propio perro:</h1>
+        <div>
+          <label>Nombre</label>
+          <input
+            type="text"
+            value={form.name}
+            onChange={changeHandler}
+            name="name"
+          />
+          {errors.name && <span className={style.errores}>{errors.name}</span>}
+        </div>
+        <div>
+          <label>Altura Máxima</label>
+          <input
+            type="number"
+            value={form.alturaMax}
+            onChange={changeHandler}
+            name="alturaMax"
+          />
+          {errors.alturaMax && (
+            <span className={style.errores}>{errors.alturaMax}</span>
+          )}
+        </div>
+        <div>
+          <label>Altura Mínima</label>
+          <input
+            type="number"
+            value={form.alturaMin}
+            onChange={changeHandler}
+            name="alturaMin"
+          />
+          {errors.alturaMin && (
+            <span className={style.errores}>{errors.alturaMin}</span>
+          )}
+        </div>
+        <div>
+          <label>Peso Máximo</label>
+          <input
+            type="number"
+            value={form.pesoMax}
+            onChange={changeHandler}
+            name="pesoMax"
+          />
+          {errors.pesoMax && (
+            <span className={style.errores}>{errors.pesoMax}</span>
+          )}
+        </div>
+        <div>
+          <label>Peso Mínima</label>
+          <input
+            type="number"
+            value={form.pesoMin}
+            onChange={changeHandler}
+            name="pesoMin"
+          />
+          {errors.pesoMin && (
+            <span className={style.errores}>{errors.pesoMin}</span>
+          )}
+        </div>
+
+        <div>
+          <label>Años de vida</label>
+          <input
+            type="text"
+            value={form.lifeSpan}
+            onChange={changeHandler}
+            name="lifeSpan"
+          />
+          {errors.lifeSpan && (
+            <span className={style.errores}>{errors.lifeSpan}</span>
+          )}
+        </div>
+        <div>
+          <label>Imagen</label>
+          <input
+            type="url"
+            value={form.image}
+            onChange={changeHandler}
+            name="image"
+          />
+          {errors.image && (
+            <span className={style.errores}>{errors.image}</span>
+          )}
+        </div>
+
+        <article className={style.info}>
+          <label htmlFor="temperamento">Temperamento</label>
+          <select name="temperament" id="temperament" onChange={changeHandler}>
+            <option value="">Selecciona un temperamento</option>
+            {listTemps}
+          </select>
+        </article>
+        <p className={errors.temperament ? style.errors : ""}>
+          {errors.temperament ? errors.temperament : null}
+        </p>
+        <button type="submit">Crear!</button>
+      </form>
+    </div>
   );
 };
 

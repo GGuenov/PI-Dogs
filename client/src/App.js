@@ -1,7 +1,7 @@
 import { Route, Routes, useLocation } from "react-router-dom";
 import "./App.css";
 import Creator from "./views/creator/creator";
-import Details from "./views/detail/details";
+import Details from "./views/details/details";
 import Home from "./views/home/home";
 import Landing from "./views/landing/landing";
 import Bar from "./components/filters/filters";
@@ -13,7 +13,7 @@ function App() {
 
   return (
     <div className="App">
-      {location.pathname !== "/" && <Bar />}
+      {location.pathname !== "/" && location.pathname !== "/creator" && <Bar />}
       <Routes>
         <Route exact path="/home" element={<Home />} />
         <Route exact path="/" element={<Landing />} />

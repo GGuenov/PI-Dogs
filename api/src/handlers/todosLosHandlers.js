@@ -4,7 +4,8 @@ const {
   getDetailsByNameEnAPI,
   getDetailsByNameEnDB,
   getRazasss,
-  getRazassByName,
+  getDogBreedsByName,
+  // getRazassByName,
 } = require("../controllers/dogsControllers");
 const cargarTemperamentosDesdeAPI = require("../controllers/getTemperamentsData");
 
@@ -40,7 +41,7 @@ const getRazassHandler = async (req, res) => {
   const { name } = req.query;
   try {
     if (name) {
-      const razaByName = await getRazassByName(name);
+      const razaByName = await getDogBreedsByName(name);
       res.status(200).json(razaByName);
     } else {
       const response = await getRazasss();
@@ -52,50 +53,64 @@ const getRazassHandler = async (req, res) => {
 };
 
 const createDogHandler = async (req, res) => {
-  const { name, heightMin, heightMax, weightMin, weightMax, lifeSpan, image } =
-    req.body;
-
+  const {
+    name,
+    heightMin,
+    heightMax,
+    weightMin,
+    weightMax,
+    lifeSpan,
+    temperament,
+    image,
+  } = req.body;
   try {
-    if (
-      name &&
-      heightMin &&
-      heightMax &&
-      weightMin &&
-      weightMax &&
-      lifeSpan &&
+    // console.log(req.body);
+    // console.log(req.body);
+
+    // if (
+    //   name &&
+    //   heightMin &&
+    //   heightMax &&
+    //   weightMin &&
+    //   weightMax &&
+    //   temperament &&
+    //   image
+    // )
+    // {
+    const createdDog = await createDogDB(
+      name,
+      heightMin,
+      heightMax,
+      weightMin,
+      weightMax,
+      lifeSpan,
+      temperament,
       image
-    ) {
-      const response = await createDogDB(
-        name,
-        heightMax,
-        heightMin,
-        weightMax,
-        weightMin,
-        lifeSpan,
-        image
-      );
-      res.status(200).json(response);
-    } else {
-      res.status(400).json({ error: "Missing requierd fields" });
-    }
+    );
+    res.status(201).json({ createdDog });
+    console.log(createdDog);
+    // } else {
+    //   res.status(400).json({ error: "Faltan campos requeridos" });
+    // }
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    res.status(404).json({ error: error.message });
   }
 };
 
-const getAllTemperamentsHandler = async (req, res) => {
-  try {
-    const response = await cargarTemperamentosDesdeAPI();
-    res.status(200).json(response);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
+// const getAllTemperamentsHandler = async (req, res) => {
+//   try {
+//     const response = await cargarTemperamentosDesdeAPI();
+//     res.status(200).json(response);
+//   } catch (error) {
+//     res.status(500).json({ error: error.message });
+//   }
+// };
 
 module.exports = {
   getDogsHandler,
   getDetailsHandler,
   getRazassHandler,
   createDogHandler,
-  getAllTemperamentsHandler,
+
+  // getAllTemperamentsHandler,
 };

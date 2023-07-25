@@ -21,7 +21,7 @@ const Details = () => {
   useEffect(() => {
     const getOneDog = async () => {
       try {
-        console.log(id);
+        // console.log(id);
         const response = await axios.get(URL);
 
         // const theDog = allDogs.filter((dog) => dog.id === id);
@@ -59,19 +59,19 @@ const Details = () => {
   return (
     <div>
       <div>
-        {dogs.id === idA ? (
+        {/* {id !== 1 ? (
           <NavLink to={`/details/${idA}`}>
             <button className={styles.button}>Anterior!</button>
           </NavLink>
-        ) : null}
+        ) : null} */}
         <NavLink to="/home">
           <button className={styles.button}>Volver!</button>
         </NavLink>
-        {idS !== dog.length ? (
+        {/* {idS !== dog.length ? (
           <NavLink to={`/details/${idS}`}>
             <button className={styles.button}>Siguiente!</button>
           </NavLink>
-        ) : null}
+        ) : null} */}
       </div>
       <div className={styles.container}>
         <h1>Details:</h1>

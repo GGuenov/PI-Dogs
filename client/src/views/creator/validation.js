@@ -1,5 +1,4 @@
 export default function validate(form) {
-  console.log(form);
   const errors = {};
 
   if (/^[0-9]+$/.test(form.name)) {
@@ -17,11 +16,9 @@ export default function validate(form) {
     errors.pesoMax = "Checkeá bien los valores...";
     errors.pesoMin = "Checkeá bien los valores...";
   }
-  //   if (/^[A-Za-z\s]*$/.test(form.pesoMax)) {
-  //     errors.pesoMax = "Taaan pesado, iba a ser?";
-  //   }
-  //   if (/^[A-Za-z\s]*$/.test(form.pesoMin)) {
-  //     errors.pesoMin = "Taaan liviano, iba a ser?";
-  //   }
+  if (!form.temperament) {
+    errors.temperament = "Debes ingresar un temperamento";
+  }
+
   return errors;
 }

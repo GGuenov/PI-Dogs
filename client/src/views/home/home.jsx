@@ -51,7 +51,7 @@ function Home() {
 
   return (
     <div className={style.home}>
-      <h1>This is home</h1>
+      {/* <h1>This is home</h1> */}
       <NavLink to="/creator">
         <button>Crea el tuyo</button>
       </NavLink>
