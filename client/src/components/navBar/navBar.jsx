@@ -38,7 +38,7 @@ function NavBar() {
 
   return (
     <div className={styles.navBar}>
-      <h1>Barra de Navegacion</h1>
+      <h1>Buscá por Nombre</h1>
       <form onSubmit={handlerSubmit}>
         <input
           placeholder="indique la raza"

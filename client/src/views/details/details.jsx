@@ -52,10 +52,10 @@ const Details = () => {
     temperament,
     image,
   } = dog[0];
-  const idS = Number(id) + 1;
-  const idA = id - 1;
-  console.log(idA);
-  console.log(idS);
+  // const idS = Number(id) + 1;
+  // const idA = id - 1;
+  // console.log(idA);
+  // console.log(idS);
   return (
     <div>
       <div>
@@ -83,7 +83,7 @@ const Details = () => {
           <h3>Peso Máximo | {heightMax}lb</h3>
           <h3> Mínimo | {heightMin}lb</h3>
         </div>
-        <h3>Temperamento/s | {temperament.map((temp) => temp + ", ")}</h3>
+        <h3>Temperamento/s | {temperament?.map((temp) => temp + ", ")}</h3>
         <h3>Espectativa de vida | {lifeSpan}</h3>
         <img src={image} alt={name} />
       </div>

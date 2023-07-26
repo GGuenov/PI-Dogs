@@ -24,6 +24,9 @@
   display: flex;
   justify-content: center;
 }
+.button {
+  margin-top: 20px;
+}
 
 /* display: flexbox;
   margin: 0%;

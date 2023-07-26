@@ -6,6 +6,17 @@ import axios from "axios";
 //import Home from "./views/home/home";
 
 const Creator = () => {
+  const initialFormState = {
+    name: "",
+    alturaMax: "",
+    alturaMin: "",
+    pesoMax: "",
+    pesoMin: "",
+    lifeSpan: "",
+    image: "",
+    temperament: [],
+  };
+
   const [form, setForm] = useState({
     name: "",
     alturaMax: "",
@@ -35,6 +46,11 @@ const Creator = () => {
     setForm({ ...form, [property]: value });
   };
 
+  const resetForm = () => {
+    setForm(initialFormState);
+    setErrors({});
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -43,11 +59,11 @@ const Creator = () => {
     const weightMin = parseInt(form.pesoMin);
     const weightMax = parseInt(form.pesoMax);
 
-    console.log(form);
-    console.log(weightMin);
-    console.log(weightMax);
-    console.log(heightMax);
-    console.log(heightMin);
+    // console.log(form);
+    // console.log(weightMin);
+    // console.log(weightMax);
+    // console.log(heightMax);
+    // console.log(heightMin);
     try {
       const response = await axios.post("http://localhost:3001/dogs/", {
         ...form,
@@ -59,6 +75,7 @@ const Creator = () => {
       console.log(form);
       alert("Perro creado, Gran trabajo!");
       console.log(response);
+      resetForm();
     } catch (error) {
       console.error(error);
       alert(error.response.data.error);

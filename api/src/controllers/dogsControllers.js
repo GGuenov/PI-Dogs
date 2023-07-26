@@ -55,7 +55,7 @@ const getDetailsByNameEnDB = async (name) => {
 
   return dog;
 };
-//Para limpiar y/o filtrar la data que viene de la API
+
 const infoCleaner = (arr) => {
   return arr.map((dog) => {
     return {

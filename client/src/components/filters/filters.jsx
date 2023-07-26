@@ -14,7 +14,6 @@ const Bar = () => {
   const location = useLocation();
   const isHomeRoute = location.pathname === "/home";
 
-  const URL = "http://localhost:3001/dogs";
   const dispatch = useDispatch();
 
   // Temperamentos

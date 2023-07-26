@@ -8,7 +8,7 @@ import {
 } from "../actions/actions";
 
 let initialState = { allDogs: [], dogs: [], temperament: [] };
-
+// console.log(allDogs);
 function rootReducer(state = initialState, action) {
   switch (action.type) {
     case GET_DOGS:
@@ -57,19 +57,19 @@ function rootReducer(state = initialState, action) {
       };
     }
     case FILTER_ORIGIN: {
-      let listedDogos;
+      let listedDogs;
 
       if (action.payload === "DB") {
-        listedDogos = state.dogs.filter((dog) => isNaN(dog.id));
+        listedDogs = state.dogs.filter((dog) => dog.id > 269);
       } else if (action.payload === "API") {
-        listedDogos = state.dogs.filter((dog) => dog.id <= 264);
+        listedDogs = state.dogs.filter((dog) => dog.id <= 264);
       } else if (action.payload === "Todos") {
-        listedDogos = state.dogs;
+        listedDogs = state.dogs;
       }
 
       return {
         ...state,
-        allDogs: listedDogos,
+        allDogs: listedDogs,
       };
     }
     case FILTER_TEMP:

@@ -1,5 +1,4 @@
 import axios from "axios";
-//import rootReducer from "../reducer/reducer";
 
 export const GET_DOGS = "GET_DOGS";
 export const GET_BY_RAZA = "GET_DOGS";
@@ -8,8 +7,7 @@ export const SORT_WEIGHT = "SORT_WEIGHT";
 export const SORT_ALPHA = "ALPHABETIC";
 
 export const FILTER_TEMP = "FILTER_TEMP";
-// export const GET_ALL = "GET_ALL"
-// export const GET_ALL_TEMPS = "GET_ALL_TEMPS"
+export const GET_ALL = "GET_ALL";
 
 export function getDogs() {
   return async function (dispatch) {
@@ -75,3 +73,16 @@ export const filteredTemps = (temperament) => {
     }
   };
 };
+// export const getAll = async () => {
+//   try {
+//     const delAPI = await axios.get("http://localhost:3001/dogs/");
+//     const deLaDB = await Dog.findByPk();
+//     return dispatch({
+//       type: GET_ALL,
+//       payload: delAPI,
+//       deLaDB,
+//     });
+//   } catch (error) {
+//     console.log({ error: error.message });
+//   }
+// };

@@ -27,7 +27,7 @@ function CardsContainer({ allDogs }) {
   };
 
   useEffect(() => {
-    if (allDogs.length < 10) setCurrentPage(1);
+    if (allDogs.length < 8) setCurrentPage(1);
   }, [allDogs]);
 
   const indexOfLastCard = currentPage * cardsPerPage;

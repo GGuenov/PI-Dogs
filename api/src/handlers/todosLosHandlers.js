@@ -1,4 +1,4 @@
-const getAllDogs = require("../controllers/getAllDogs");
+const { getAllDogs, getDBDogs } = require("../controllers/getAllDogs");
 const {
   createDogDB,
   getDetailsByNameEnAPI,
@@ -13,9 +13,12 @@ const cargarTemperamentosDesdeAPI = require("../controllers/getTemperamentsData"
 
 const getDogsHandler = async (req, res) => {
   try {
-    const response = await getAllDogs();
+    const responseAPI = await getAllDogs();
+    const responseDB = await getDBDogs();
+
+    const todes = responseAPI.concat(responseDB);
     console.log("gato");
-    res.status(200).json(response);
+    res.status(200).json(todes);
   } catch (error) {
     res.status(500).json(error);
   }
@@ -64,19 +67,6 @@ const createDogHandler = async (req, res) => {
     image,
   } = req.body;
   try {
-    // console.log(req.body);
-    // console.log(req.body);
-
-    // if (
-    //   name &&
-    //   heightMin &&
-    //   heightMax &&
-    //   weightMin &&
-    //   weightMax &&
-    //   temperament &&
-    //   image
-    // )
-    // {
     const createdDog = await createDogDB(
       name,
       heightMin,
@@ -89,9 +79,6 @@ const createDogHandler = async (req, res) => {
     );
     res.status(201).json({ createdDog });
     console.log(createdDog);
-    // } else {
-    //   res.status(400).json({ error: "Faltan campos requeridos" });
-    // }
   } catch (error) {
     res.status(404).json({ error: error.message });
   }

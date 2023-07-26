@@ -8,7 +8,7 @@ function Card({ dog }) {
   const { temperament, weightMax, name, image, id } = dog;
   // console.log(temperament);
 
-  const pocosTemps = temperament.slice(0, 4);
+  let pocosTemps = temperament?.slice(0, 4);
 
   return (
     <div className={style.carta}>
@@ -16,7 +16,7 @@ function Card({ dog }) {
         <img className={style.image} src={image} alt={name} />
         <p className={style.texto}>{name}</p>
         <p className={style.texto}>{weightMax}lb</p>
-        <p className={style.texto}>{pocosTemps.map((temp) => temp + " ")}</p>
+        <p className={style.texto}>{pocosTemps?.map((temp) => temp + " ")}</p>
       </NavLink>
     </div>
   );

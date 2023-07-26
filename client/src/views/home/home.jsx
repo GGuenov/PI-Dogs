@@ -53,7 +53,7 @@ function Home() {
     <div className={style.home}>
       {/* <h1>This is home</h1> */}
       <NavLink to="/creator">
-        <button>Crea el tuyo</button>
+        <button className={style.button}>Crea el tuyo</button>
       </NavLink>
       <div className={style.navBar}>
         <NavBar handleChange={handleChange} handleSubmit={handleSubmit} />
