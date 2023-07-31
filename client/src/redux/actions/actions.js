@@ -5,7 +5,7 @@ export const GET_BY_RAZA = "GET_DOGS";
 export const FILTER_ORIGIN = "FILTER_ORIGIN";
 export const SORT_WEIGHT = "SORT_WEIGHT";
 export const SORT_ALPHA = "ALPHABETIC";
-
+export const FILTER_BY_WEIGHT = "FILTER_BY_WEIGHT";
 export const FILTER_TEMP = "FILTER_TEMP";
 export const GET_ALL = "GET_ALL";
 
@@ -46,6 +46,13 @@ export const orderredByAlphabet = (order) => {
     payload: order,
   };
 };
+
+export const filtByWeight = () => {
+  return {
+    type: FILTER_BY_WEIGHT,
+  };
+};
+
 export const filteredTemps = (temperament) => {
   return async function (dispatch) {
     try {

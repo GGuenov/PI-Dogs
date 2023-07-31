@@ -73,7 +73,7 @@ const Creator = () => {
         weightMax,
       });
       console.log(form);
-      alert("Perro creado, Gran trabajo!");
+      alert("Perro creado exitosamente. Gran trabajo!");
       console.log(response);
       resetForm();
     } catch (error) {
@@ -104,6 +104,20 @@ const Creator = () => {
       {temperament.name}{" "}
     </option>
   ));
+
+  const handleSelect = (e) => {
+    e.preventDefault();
+    setForm({
+      ...form,
+      temperament: [...form.temperament, e.target.value],
+    });
+    // setErrors(
+    //   validate({
+    //     ...input,
+    //     [e.target.name]: e.target.value,
+    //   })
+    // );
+  };
 
   return (
     <div>
@@ -197,12 +211,34 @@ const Creator = () => {
         </div>
 
         <article className={style.info}>
-          <label htmlFor="temperamento">Temperamento</label>
-          <select name="temperament" id="temperament" onChange={changeHandler}>
+          <label htmlFor="temperamento">Temperamento </label>
+          <select name="temperament" id="temperament" onChange={handleSelect}>
             <option value="">Selecciona un temperamento</option>
             {listTemps}
           </select>
         </article>
+        <article className={style.info}>
+          <label htmlFor="temperamento1">Temperamento </label>
+          <select name="temperament1" id="temperament1" onChange={handleSelect}>
+            <option value="">Selecciona un temperamento</option>
+            {listTemps}
+          </select>
+        </article>
+        <article className={style.info}>
+          <label htmlFor="temperamento2">Temperamento </label>
+          <select name="temperament2" id="temperament2" onChange={handleSelect}>
+            <option value="">Selecciona un temperamento</option>
+            {listTemps}
+          </select>
+        </article>
+        <article className={style.info}>
+          <label htmlFor="temperamento3">Temperamento </label>
+          <select name="temperament3" id="temperament3" onChange={handleSelect}>
+            <option value="">Selecciona un temperamento</option>
+            {listTemps}
+          </select>
+        </article>
+
         <p className={errors.temperament ? style.errors : ""}>
           {errors.temperament ? errors.temperament : null}
         </p>

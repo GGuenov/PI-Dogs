@@ -68,7 +68,7 @@ const getDBDogs = async (req, res) => {
       nextId++;
       return dale;
     });
-
+    // console.log(elDefi.iiiiiiiiiiii);
     return elDefi;
     // return response;
   } catch (error) {

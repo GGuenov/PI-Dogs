@@ -5,6 +5,7 @@ import Details from "./views/details/details";
 import Home from "./views/home/home";
 import Landing from "./views/landing/landing";
 import Bar from "./components/filters/filters";
+// import { useEffect } from "react";
 // import { useSelector } from "react-redux";
 
 function App() {

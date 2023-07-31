@@ -22,12 +22,32 @@ const createDogDB = async (
     image,
   });
 
-  const findTemp = await Temperament.findOne({
-    where: { id: temperament },
+  const findTemp1 = await Temperament.findAll({
+    where: { id: temperament[0] },
+  });
+  if (findTemp1) {
+    await createdDog.addTemperament(findTemp1);
+  }
+  const findTemp2 = await Temperament.findAll({
+    where: { id: temperament[1] },
   });
 
-  if (findTemp) {
-    await createdDog.addTemperament(findTemp);
+  if (findTemp2) {
+    await createdDog.addTemperament(findTemp2);
+  }
+  const findTemp3 = await Temperament.findAll({
+    where: { id: temperament[2] },
+  });
+
+  if (findTemp3) {
+    await createdDog.addTemperament(findTemp3);
+  }
+  const findTemp4 = await Temperament.findAll({
+    where: { id: temperament[3] },
+  });
+
+  if (findTemp4) {
+    await createdDog.addTemperament(findTemp4);
   }
 
   return createdDog;

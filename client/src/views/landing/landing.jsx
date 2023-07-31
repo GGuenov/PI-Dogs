@@ -8,7 +8,9 @@ import style from "./landing.module.css";
 function Landing() {
   return (
     <div className={style.landing}>
-      <h1>This is the landing view</h1>
+      <h1>Bienvenido a mi primer PI</h1>
+      <h2>Hoy toca Perros...</h2>
+      <h2>Una vez limpia la pantalla, podemos paras a la Home</h2>
       <NavLink to="/home">
         <button>a Home</button>
       </NavLink>

@@ -5,6 +5,7 @@ import { useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import {
   filteredTemps,
+  filtByWeight,
   orderByOrigin,
   orderedByWeight,
   orderredByAlphabet,
@@ -46,6 +47,9 @@ const Bar = () => {
 
   const handleOrigin = (event) => {
     dispatch(orderByOrigin(event.target.value));
+  };
+  const handlerchange = (event) => {
+    dispatch(filtByWeight(event.target.value));
   };
 
   const handleAlphabetic = (event) => {
@@ -109,6 +113,7 @@ const Bar = () => {
           </select>
         </article>
       )}
+      <button onClick={handlerchange}>Mas livianos</button>
     </section>
   );
 };

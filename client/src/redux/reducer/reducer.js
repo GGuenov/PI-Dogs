@@ -5,6 +5,7 @@ import {
   SORT_ALPHA,
   FILTER_ORIGIN,
   FILTER_TEMP,
+  FILTER_BY_WEIGHT,
 } from "../actions/actions";
 
 let initialState = { allDogs: [], dogs: [], temperament: [] };
@@ -21,6 +22,12 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         allDogs: action.payload,
+      };
+    case FILTER_BY_WEIGHT:
+      const livianos = state.dogs.filter((dog) => dog.weightMax < 20);
+      return {
+        ...state,
+        allDogs: livianos,
       };
     case SORT_WEIGHT: {
       const weightOrder = action.payload;

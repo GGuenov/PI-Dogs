@@ -6,9 +6,12 @@
   justify-content: flex-end;
 }
 .imputes input {
-  background-color: rgb(154, 154, 202);
+  background-color: rgb(185, 185, 205);
   text-decoration: double;
   display: table-header-group;
   justify-content: end;
   margin: 2%;
+}
+.info {
+  margin: 5px;
 }
