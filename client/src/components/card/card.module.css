@@ -1,0 +1,27 @@
+.carta {
+  border: 3px solid grey;
+  background: linear-gradient(to left, red 0%, green 100%);
+  border-radius: 10px;
+  width: 170px;
+  height: 400px;
+  padding: 10px;
+  box-shadow: 0 0 10px;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.85);
+    color: rgb(226, 62, 62);
+    z-index: 10;
+  }
+}
+
+.texto {
+  font-weight: bold;
+  font-size: 100;
+  color: black;
+  padding: 0%;
+}
+.image {
+  margin-right: 0%;
+  margin-top: 2%;
+  width: 160px;
+}

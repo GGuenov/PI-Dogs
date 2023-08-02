@@ -1,31 +1,50 @@
+const { getAllDogs, getDBDogs } = require("../controllers/getAllDogs");
 const {
   createDogDB,
-  getDogByIdRaza,
+  getDetailsByNameEnAPI,
+  getDetailsByNameEnDB,
   getRazasss,
-  getRazassByName,
+  getDogBreedsByName,
+  // getRazassByName,
 } = require("../controllers/dogsControllers");
+const cargarTemperamentosDesdeAPI = require("../controllers/getTemperamentsData");
 
-const getDogsHandler = (req, res) => {
-  res.send("NIY: ESTEA RUTA TRAE LA INFO DE UN USUARIO DETERMINADO POR ID");
+// console.log(getAllDogs);
+
+const getDogsHandler = async (req, res) => {
+  try {
+    const responseAPI = await getAllDogs();
+    const responseDB = await getDBDogs();
+
+    const todes = responseAPI.concat(responseDB);
+    console.log("gato");
+    res.status(200).json(todes);
+  } catch (error) {
+    res.status(500).json(error);
+  }
 };
 
-const getRazaHandler = async (req, res) => {
-  const { idRaza } = req.params;
-  const source = isNaN(idRaza) ? "DB" : "API";
+const getDetailsHandler = async (req, res) => {
+  const { name } = req.params;
+  const source = isNaN(name) ? "DB" : "API";
   try {
-    const response = await getDogByIdRaza(idRaza, source);
-    res.status(200).json(response);
+    const responseAPI = await getDetailsByNameEnAPI(name);
+    if (responseAPI) res.status(200).json(responseAPI);
+    else {
+      const responseDB = await getDetailsByNameEnDB(name);
+      res.status(200).json(responseDB);
+    }
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
-  //  res.send(`TRAE DE LA DB Y API LAS CARACTS. DE UNA RAZA DADA POR ${idRaza}`);
 };
+//  res.send(`TRAE DE LA DB Y API LAS CARACTS. DE UNA RAZA DADA POR ${idRaza}`);
 
 const getRazassHandler = async (req, res) => {
   const { name } = req.query;
   try {
     if (name) {
-      const razaByName = await getRazassByName(name);
+      const razaByName = await getDogBreedsByName(name);
       res.status(200).json(razaByName);
     } else {
       const response = await getRazasss();
@@ -37,29 +56,48 @@ const getRazassHandler = async (req, res) => {
 };
 
 const createDogHandler = async (req, res) => {
-  const { name, height, weight, life_span, temperament } = req.body;
+  const {
+    name,
+    heightMin,
+    heightMax,
+    weightMin,
+    weightMax,
+    lifeSpan,
+    temperament,
+    image,
+  } = req.body;
   try {
-    const response = await createDogDB(
+    const createdDog = await createDogDB(
       name,
-      height,
-      weight,
-      life_span,
-      temperament
+      heightMin,
+      heightMax,
+      weightMin,
+      weightMax,
+      lifeSpan,
+      temperament,
+      image
     );
-    res.status(200).json(response);
+    res.status(201).json({ createdDog });
+    console.log(createdDog);
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    res.status(404).json({ error: error.message });
   }
 };
 
-const getTemperamentsHandler = (req, res) => {
-  res.send("NIY: ESTEA RUTA TRAE LA INFO DE UN USUARIO DETERMINADO POR ID");
-};
+// const getAllTemperamentsHandler = async (req, res) => {
+//   try {
+//     const response = await cargarTemperamentosDesdeAPI();
+//     res.status(200).json(response);
+//   } catch (error) {
+//     res.status(500).json({ error: error.message });
+//   }
+// };
 
 module.exports = {
   getDogsHandler,
-  getRazaHandler,
+  getDetailsHandler,
   getRazassHandler,
   createDogHandler,
-  getTemperamentsHandler,
+
+  // getAllTemperamentsHandler,
 };

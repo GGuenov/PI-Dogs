@@ -1,0 +1,10 @@
+.container {
+  background-color: azure;
+}
+.altPes {
+  display: flex;
+  justify-content: center;
+}
+.altPes h3 {
+  padding: 20px;
+}

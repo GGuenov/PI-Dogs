@@ -1,6 +1,6 @@
 const axios = require("axios");
 const { Dog, Temperament } = require("../db");
-const { where } = require("sequelize");
+// const { where } = require("sequelize");
 
 const createDogDB = async (
   name,
@@ -9,27 +9,73 @@ const createDogDB = async (
   weightMin,
   weightMax,
   lifeSpan,
+  temperament,
   image
 ) => {
-  return await Dog.create({
+  const createdDog = await Dog.create({
     name,
-    heightMin,
-    heightMax,
-    weightMin,
-    weightMax,
+    heightMin: parseInt(heightMin),
+    heightMax: parseInt(heightMax),
+    weightMin: parseInt(weightMin),
+    weightMax: parseInt(weightMax),
     lifeSpan,
     image,
   });
+
+  const findTemp1 = await Temperament.findAll({
+    where: { id: temperament[0] },
+  });
+  if (findTemp1) {
+    await createdDog.addTemperament(findTemp1);
+  }
+  const findTemp2 = await Temperament.findAll({
+    where: { id: temperament[1] },
+  });
+
+  if (findTemp2) {
+    await createdDog.addTemperament(findTemp2);
+  }
+  const findTemp3 = await Temperament.findAll({
+    where: { id: temperament[2] },
+  });
+
+  if (findTemp3) {
+    await createdDog.addTemperament(findTemp3);
+  }
+  const findTemp4 = await Temperament.findAll({
+    where: { id: temperament[3] },
+  });
+
+  if (findTemp4) {
+    await createdDog.addTemperament(findTemp4);
+  }
+
+  return createdDog;
 };
 
-const getDogByIdRaza = async (idRaza, source) => {
-  const dog =
-    source === "API"
-      ? (await axios.get(`https://api.thedogapi.com/v1/breeds/${idRaza}`)).data
-      : await Dog.findByPK(idRaza);
+const getDetailsByNameEnAPI = async (name) => {
+  try {
+    const URL = `https://api.thedogapi.com/v1/breeds/search?q=${name}`;
+    const response = await axios.get(URL);
+
+    if (response.data.length > 0) {
+      const perro = response.data[0];
+      return perro;
+    } else {
+      return null;
+    }
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+
+const getDetailsByNameEnDB = async (name) => {
+  const dog = await Dog.findByPk(name);
+
   return dog;
 };
-//Para limpiar y/o filtrar la data que viene de la API
+
 const infoCleaner = (arr) => {
   return arr.map((dog) => {
     return {
@@ -51,20 +97,43 @@ const getRazasss = async () => {
   return [...dogDB, ...dogAPI];
 };
 
-const getRazassByName = async (name) => {
-  const infoAPI = await axios.get(`https://api.thedogapi.com/v1/breeds/`).data;
-  const dogAPI = infoCleaner(infoAPI);
-  const dogsFiltered = dogAPI.filter((dog) => dog.raza === raza);
+// Controlador para la ruta GET /dogs/name
+async function getDogBreedsByName(req, res) {
+  const { name } = req.query;
 
-  const dogDB = await Dog.findAll({ where: { raza: name } });
+  try {
+    // Consultar las razas en la API
+    const apiResponse = await axios.get("https://api.thedogapi.com/v1/breeds/");
+    const apiDogBreeds = apiResponse.data;
 
-  return [...dogsFiltered, ...dogDB];
+    // Filtrar las razas que coincidan con el nombre recibido (ignorando mayúsculas y minúsculas)
+    const matchedBreeds = apiDogBreeds.filter((breed) =>
+      breed.name.toLowerCase().includes(name.toLowerCase())
+    );
+
+    if (matchedBreeds.length === 0) {
+      // Si no se encontraron razas, mostrar mensaje adecuado
+      return res
+        .status(404)
+        .json({ message: "No se encontraron razas de perros con ese nombre." });
+    }
+
+    // Aquí puedes realizar la búsqueda en tu base de datos local y combinar los resultados con las razas de la API si es necesario
+
+    // Devolver las razas encontradas
+    res.json(matchedBreeds);
+  } catch (error) {
+    console.error(error);
+    res
+      .status(500)
+      .json({ message: "Ocurrió un error al buscar las razas de perros." });
+  }
+}
+
+module.exports = {
+  createDogDB,
+  getDetailsByNameEnAPI,
+  getDetailsByNameEnDB,
+  getRazasss,
+  getDogBreedsByName,
 };
-
-// const getAllTemperaments = async (req, res) => {
-//   try {
-//     findAll({ where: { temperament: temperament.lenght > 0 } });
-//   } catch (error) {}
-// };
-
-module.exports = { createDogDB, getDogByIdRaza, getRazasss, getRazassByName };
