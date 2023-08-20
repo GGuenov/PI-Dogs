@@ -13,7 +13,8 @@
     z-index: 10;
   }
 }
-
+/* .todo {
+} */
 .texto {
   font-weight: bold;
   font-size: 100;
@@ -24,8 +25,4 @@
   margin-right: 0%;
   margin-top: 2%;
   width: 160px;
-}
-.img {
-  height: 0px;
-  width: 0px;
 }

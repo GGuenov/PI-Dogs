@@ -113,7 +113,11 @@ const Bar = () => {
           </select>
         </article>
       )}
-      <button onClick={handlerchange}>Mas livianos</button>
+      {isHomeRoute && (
+        <button className={style.livianos} onClick={handlerchange}>
+          Mas livianos
+        </button>
+      )}
     </section>
   );
 };

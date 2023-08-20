@@ -11,9 +11,7 @@ import NavBar from "../../components/navBar/navBar";
 function Home() {
   const dispatch = useDispatch(); //esto le manda actions a la store
   const allDogs = useSelector((state) => state.allDogs); // me suscrivo al estado 'allDogs'
-  // const test = useSelector((state) => state.test); // me suscrivo al estado 'allDogs'
 
-  // const [filtered, setFiltered] = useState(allDogs);
   const [searchString, setSearchString] = useState("");
   function handleChange(e) {
     setSearchString(e.target.value);
@@ -37,12 +35,10 @@ function Home() {
   //   if (allDogs.length < 10) setCurrentPage(1);
   // }, [allDogs]);
 
-  // console.log(filtered);
   console.log(allDogs);
 
   return (
     <div className={style.home}>
-      {/* <h1>This is home</h1> */}
       <NavLink to="/creator">
         <button className={style.button}>Crea el tuyo</button>
       </NavLink>

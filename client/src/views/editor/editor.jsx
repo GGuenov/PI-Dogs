@@ -161,8 +161,7 @@ const Editor = () => {
   console.log(form.name);
   console.log(names);
   console.log(selfFill);
-  //   console.log(selfFill[0].temperament[0]);
-  //   console.log(selfFill[0].temperament[1]);
+  console.log(form);
   return (
     <div>
       <NavLink to="/home">

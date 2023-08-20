@@ -52,26 +52,28 @@ const Details = () => {
     temperament,
     image,
   } = dog[0];
-  // const idS = Number(id) + 1;
-  // const idA = id - 1;
-  // console.log(idA);
-  // console.log(idS);
+  const idS = Number(id) + 1;
+  const idA = id - 1;
+  // console.log(dogs.length);
+  // console.log(id);
+  const imagen = id <= 172 ? image + ".jpg" : image;
+  const imagePng = image + ".png";
   return (
     <div>
       <div>
-        {/* {id !== 1 ? (
+        {id < 2 ? null : (
           <NavLink to={`/details/${idA}`}>
             <button className={styles.button}>Anterior!</button>
           </NavLink>
-        ) : null} */}
+        )}
         <NavLink to="/home">
           <button className={styles.button}>Volver!</button>
         </NavLink>
-        {/* {idS !== dog.length ? (
+        {Number(id) === dogs.length ? null : (
           <NavLink to={`/details/${idS}`}>
             <button className={styles.button}>Siguiente!</button>
           </NavLink>
-        ) : null} */}
+        )}
       </div>
       <div className={styles.container}>
         <h1>Details:</h1>
@@ -85,7 +87,15 @@ const Details = () => {
         </div>
         <h3>Temperamento/s | {temperament?.map((temp) => temp + ", ")}</h3>
         <h3>Espectativa de vida | {lifeSpan}</h3>
-        <img className={styles.image} src={image} alt={name} />
+        <img
+          className={styles.image}
+          src={imagen}
+          onError={(e) => {
+            e.target.src = null;
+            e.target.src = imagePng;
+          }}
+          alt={name}
+        />
       </div>
     </div>
   );

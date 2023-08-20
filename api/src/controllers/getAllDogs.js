@@ -7,6 +7,7 @@ const URL = `https://api.thedogapi.com/v1/breeds/?api_key=${API_KEY}`;
 const getAllDogs = async () => {
   try {
     const { data } = await axios.get(URL);
+    let siguienteId = 0;
     const response = await Promise.all(
       data.map(async (dog) => {
         let [weightMin, weightMax] = dog.weight.imperial.split(" - ");
@@ -18,16 +19,14 @@ const getAllDogs = async () => {
         const image = dog.hasOwnProperty("reference_image_id")
           ? `https://cdn2.thedogapi.com/images/${dog.reference_image_id}`
           : "Default image URL";
-        console.log(image);
-        // console.log(bringImage.data);
-        // console.log(bringImage);
 
         const lifeSpan = dog.hasOwnProperty("life_span")
           ? dog.life_span
           : "Unknown lifespan";
 
+        siguienteId++;
         return {
-          id: dog.id,
+          id: siguienteId,
           name: dog.name,
           weightMin: Number(weightMin),
           weightMax: Number(weightMax),
@@ -58,7 +57,7 @@ const getDBDogs = async (req, res) => {
         },
       },
     });
-    let nextId = 270;
+    let nextId = 173;
     const elDefi = response.map((e) => {
       const dale = {
         id: nextId,

@@ -22,7 +22,7 @@ const createDogDB = async (
   });
 
   for (const findId of temperament) {
-    const findTemp = await Temperament.findAll({
+    const findTemp = await Temperament.findOne({
       where: { id: findId },
     });
 

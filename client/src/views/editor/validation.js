@@ -20,5 +20,17 @@ export default function validate(form) {
     errors.temperament = "Debes ingresar un temperamento";
   }
 
+  const allowedExtensions = new Array[("jpg", "png", "gif")]();
+  let fileExtension = form.image.split(".").pop().toLowerCase();
+  console.log(fileExtension);
+  console.log(allowedExtensions[0]);
+
+  for (let i = 0; i < allowedExtensions.length; i++)
+    if (fileExtension === allowedExtensions[i]) {
+      return (errors.image = "");
+    } else {
+      errors.image = "Estaría teniando que ser una imagen";
+    }
+
   return errors;
 }
