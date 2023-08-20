@@ -1,6 +1,5 @@
 const axios = require("axios");
 const { Dog, Temperament } = require("../db");
-// const { where } = require("sequelize");
 
 const createDogDB = async (
   name,
@@ -22,32 +21,14 @@ const createDogDB = async (
     image,
   });
 
-  const findTemp1 = await Temperament.findAll({
-    where: { id: temperament[0] },
-  });
-  if (findTemp1) {
-    await createdDog.addTemperament(findTemp1);
-  }
-  const findTemp2 = await Temperament.findAll({
-    where: { id: temperament[1] },
-  });
+  for (const findId of temperament) {
+    const findTemp = await Temperament.findAll({
+      where: { id: findId },
+    });
 
-  if (findTemp2) {
-    await createdDog.addTemperament(findTemp2);
-  }
-  const findTemp3 = await Temperament.findAll({
-    where: { id: temperament[2] },
-  });
-
-  if (findTemp3) {
-    await createdDog.addTemperament(findTemp3);
-  }
-  const findTemp4 = await Temperament.findAll({
-    where: { id: temperament[3] },
-  });
-
-  if (findTemp4) {
-    await createdDog.addTemperament(findTemp4);
+    if (findTemp) {
+      await createdDog.addTemperament(findTemp);
+    }
   }
 
   return createdDog;

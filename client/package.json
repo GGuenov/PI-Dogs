@@ -8,6 +8,8 @@
     "@testing-library/user-event": "^13.1.1",
     "axios": "^1.4.0",
     "client": "^0.0.1",
+    "file-type": "^18.5.0",
+    "mime": "^3.0.0",
     "openssl": "^2.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -43,5 +45,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/plugin-transform-private-property-in-object": "^7.22.5"
   }
 }

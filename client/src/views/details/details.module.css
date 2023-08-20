@@ -1,6 +1,9 @@
 .container {
   background-color: azure;
 }
+.image {
+  width: 20cm;
+}
 .altPes {
   display: flex;
   justify-content: center;

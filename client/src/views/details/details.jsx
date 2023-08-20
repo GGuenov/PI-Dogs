@@ -85,7 +85,7 @@ const Details = () => {
         </div>
         <h3>Temperamento/s | {temperament?.map((temp) => temp + ", ")}</h3>
         <h3>Espectativa de vida | {lifeSpan}</h3>
-        <img src={image} alt={name} />
+        <img className={styles.image} src={image} alt={name} />
       </div>
     </div>
   );

@@ -4,8 +4,6 @@ const cors = require("cors");
 const morgan = require("morgan");
 const mainRouter = require("./routes/mainRouter");
 
-//const { DogModel, TemperamentModel } = require("./db.js");
-
 const app = express();
 
 app.use(cors());
@@ -30,12 +28,3 @@ app.use(express.json()); // parseador
 app.use(mainRouter);
 
 module.exports = app;
-
-// Error catching endware.
-// server.use((err, req, res, next) => {
-//   // eslint-disable-line no-unused-vars
-//   const status = err.status || 500;
-//   const message = err.message || err;
-//   console.error(err);
-//   res.status(status).send(message);
-// });

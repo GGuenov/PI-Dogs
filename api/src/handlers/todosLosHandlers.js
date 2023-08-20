@@ -1,15 +1,23 @@
 const { getAllDogs, getDBDogs } = require("../controllers/getAllDogs");
+const { deleteDogDB, editedDogDB } = require("../controllers/DBControllers");
+
 const {
   createDogDB,
   getDetailsByNameEnAPI,
   getDetailsByNameEnDB,
   getRazasss,
   getDogBreedsByName,
-  // getRazassByName,
 } = require("../controllers/dogsControllers");
 const cargarTemperamentosDesdeAPI = require("../controllers/getTemperamentsData");
 
-// console.log(getAllDogs);
+const getOnlyDBDogsHandler = async (req, res) => {
+  try {
+    const response = await getDBDogs();
+    res.status(200).json(response);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
 
 const getDogsHandler = async (req, res) => {
   try {
@@ -84,20 +92,52 @@ const createDogHandler = async (req, res) => {
   }
 };
 
-// const getAllTemperamentsHandler = async (req, res) => {
-//   try {
-//     const response = await cargarTemperamentosDesdeAPI();
-//     res.status(200).json(response);
-//   } catch (error) {
-//     res.status(500).json({ error: error.message });
-//   }
-// };
+const editDogHandler = async (req, res) => {
+  const {
+    name,
+    heightMin,
+    heightMax,
+    weightMin,
+    weightMax,
+    lifeSpan,
+    temperament,
+    image,
+  } = req.body;
+  try {
+    const editedDog = await editedDogDB(
+      name,
+      heightMin,
+      heightMax,
+      weightMin,
+      weightMax,
+      lifeSpan,
+      temperament,
+      image
+    );
+    res.status(200).json(editedDog + "El perro fue editado");
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+};
+
+const deleteDogHandler = async (req, res) => {
+  const { name } = req.params;
+  try {
+    const deletedDog = await deleteDogDB(name);
+    res.status(200).json({ deletedDog });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
 
 module.exports = {
   getDogsHandler,
   getDetailsHandler,
   getRazassHandler,
   createDogHandler,
-
-  // getAllTemperamentsHandler,
+  deleteDogHandler,
+  editDogHandler,
+  getOnlyDBDogsHandler,
 };
+
+// getAllTemperamentsHandler,

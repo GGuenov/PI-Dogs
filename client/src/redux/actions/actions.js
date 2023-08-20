@@ -80,16 +80,3 @@ export const filteredTemps = (temperament) => {
     }
   };
 };
-// export const getAll = async () => {
-//   try {
-//     const delAPI = await axios.get("http://localhost:3001/dogs/");
-//     const deLaDB = await Dog.findByPk();
-//     return dispatch({
-//       type: GET_ALL,
-//       payload: delAPI,
-//       deLaDB,
-//     });
-//   } catch (error) {
-//     console.log({ error: error.message });
-//   }
-// };

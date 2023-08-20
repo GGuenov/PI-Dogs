@@ -9,7 +9,6 @@ import {
 } from "../actions/actions";
 
 let initialState = { allDogs: [], dogs: [], temperament: [] };
-// console.log(allDogs);
 function rootReducer(state = initialState, action) {
   switch (action.type) {
     case GET_DOGS:
@@ -40,6 +39,7 @@ function rootReducer(state = initialState, action) {
         }
         return 0;
       });
+      // console.log(allDogs);
 
       return {
         ...state,

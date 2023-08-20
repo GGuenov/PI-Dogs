@@ -5,6 +5,7 @@ import Details from "./views/details/details";
 import Home from "./views/home/home";
 import Landing from "./views/landing/landing";
 import Bar from "./components/filters/filters";
+import Editor from "./views/editor/editor";
 // import { useEffect } from "react";
 // import { useSelector } from "react-redux";
 
@@ -20,6 +21,7 @@ function App() {
         <Route exact path="/" element={<Landing />} />
         <Route path="/details/:id" element={<Details />} />
         <Route path="/creator" element={<Creator />} />
+        <Route path="/editor" element={<Editor />} />
       </Routes>
     </div>
   );

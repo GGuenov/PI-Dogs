@@ -23,15 +23,6 @@ function Home() {
   function handleSubmit(e) {
     e.preventDefault();
     dispatch(getByRaza(searchString));
-    // const filteredDogs = allDogs.filter((dog) =>
-    //   dog.name.toLowerCase().includes(searchString.toLowerCase())
-    // );
-
-    // if (filteredDogs.length !== 0) {
-    //   setFiltered(filteredDogs);
-    // } else {
-    //   setFiltered(allDogs);
-    // }
   }
 
   useEffect(() => {
@@ -54,6 +45,9 @@ function Home() {
       {/* <h1>This is home</h1> */}
       <NavLink to="/creator">
         <button className={style.button}>Crea el tuyo</button>
+      </NavLink>
+      <NavLink to="/editor">
+        <button className={style.button}>Ir a edición</button>
       </NavLink>
       <div className={style.navBar}>
         <NavBar handleChange={handleChange} handleSubmit={handleSubmit} />
