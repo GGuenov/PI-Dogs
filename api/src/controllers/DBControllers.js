@@ -7,7 +7,7 @@ const deleteDogDB = async (name) => {
 
   return deleteada;
 };
-// jjjjjjjjjjjjjjjjjjjjjjj
+
 const editedDogDB = async (
   name,
   heightMin,

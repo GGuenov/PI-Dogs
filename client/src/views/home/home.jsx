@@ -39,12 +39,20 @@ function Home() {
 
   return (
     <div className={style.home}>
-      <NavLink to="/creator">
-        <button className={style.button}>Crea el tuyo</button>
+      <div>
+        <NavLink to="/creator">
+          <button className={style.button}>Crea el tuyo</button>
+        </NavLink>
+        <NavLink to="/editor">
+          <button className={style.button}>Ir a edición</button>
+        </NavLink>
+      </div>
+      <NavLink to="/delete">
+        <button className={style.button}>
+          O decime cuál no te gusta y lo volamos!
+        </button>
       </NavLink>
-      <NavLink to="/editor">
-        <button className={style.button}>Ir a edición</button>
-      </NavLink>
+
       <div className={style.navBar}>
         <NavBar handleChange={handleChange} handleSubmit={handleSubmit} />
       </div>

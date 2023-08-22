@@ -112,8 +112,7 @@ const Editor = () => {
       try {
         const res = await axios.get(URLname);
         const data = await res.data;
-        console.log(res.data);
-        console.log(data[0]);
+
         setNames(data);
       } catch (error) {
         console.log(error);
@@ -261,29 +260,49 @@ const Editor = () => {
 
         <article className={style.info}>
           <label htmlFor="temperamento">Temperamento </label>
-          <select name="temperament" id="temperament" onChange={handleSelect}>
-            <option value={primerTemp}>{primerTemp}</option>
+          <select
+            value={primerTemp}
+            name="temperament"
+            id="temperament"
+            onChange={handleSelect}
+          >
+            <option>{primerTemp}</option>
             {listTemps}
           </select>
         </article>
         <article className={style.info}>
           <label htmlFor="temperamento1">Temperamento </label>
-          <select name="temperament1" id="temperament1" onChange={handleSelect}>
-            <option value={segundoTemp}>{segundoTemp}</option>
+          <select
+            value={segundoTemp}
+            name="temperament1"
+            id="temperament1"
+            onChange={handleSelect}
+          >
+            <option value="">{segundoTemp}</option>
             {listTemps}
           </select>
         </article>
         <article className={style.info}>
           <label htmlFor="temperamento2">Temperamento </label>
-          <select name="temperament2" id="temperament2" onChange={handleSelect}>
-            <option value={terceroTemp}>{terceroTemp}</option>
+          <select
+            value={terceroTemp}
+            name="temperament2"
+            id="temperament2"
+            onChange={handleSelect}
+          >
+            <option>{terceroTemp}</option>
             {listTemps}
           </select>
         </article>
         <article className={style.info}>
           <label htmlFor="temperamento3">Temperamento </label>
-          <select name="temperament3" id="temperament3" onChange={handleSelect}>
-            <option value={cuartoTemp}>{cuartoTemp}</option>
+          <select
+            value={cuartoTemp}
+            name="temperament3"
+            id="temperament3"
+            onChange={handleSelect}
+          >
+            <option value="">{cuartoTemp}</option>
             {listTemps}
           </select>
         </article>

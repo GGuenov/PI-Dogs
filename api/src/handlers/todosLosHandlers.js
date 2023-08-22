@@ -8,7 +8,7 @@ const {
   getRazasss,
   getDogBreedsByName,
 } = require("../controllers/dogsControllers");
-const cargarTemperamentosDesdeAPI = require("../controllers/getTemperamentsData");
+// const cargarTemperamentosDesdeAPI = require("../controllers/getTemperamentsData");
 
 const getOnlyDBDogsHandler = async (req, res) => {
   try {
@@ -46,7 +46,6 @@ const getDetailsHandler = async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 };
-//  res.send(`TRAE DE LA DB Y API LAS CARACTS. DE UNA RAZA DADA POR ${idRaza}`);
 
 const getRazassHandler = async (req, res) => {
   const { name } = req.query;
@@ -123,6 +122,7 @@ const editDogHandler = async (req, res) => {
 const deleteDogHandler = async (req, res) => {
   const { name } = req.params;
   try {
+    console.log(name);
     const deletedDog = await deleteDogDB(name);
     res.status(200).json({ deletedDog });
   } catch (error) {

@@ -18,6 +18,6 @@ dogsRouter.get("/name?=", getRazassHandler);
 
 dogsRouter.post("/", createDogHandler);
 dogsRouter.put("/edit", editDogHandler);
-dogsRouter.delete("/delete", deleteDogHandler);
+dogsRouter.delete("/delete/:name", deleteDogHandler);
 
 module.exports = dogsRouter;

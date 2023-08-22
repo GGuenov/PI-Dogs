@@ -52,18 +52,13 @@ const Creator = () => {
   };
 
   const handleSubmit = async (event) => {
-    event.preventDefault();
+    // event.preventDefault();
 
     const heightMin = parseInt(form.alturaMin);
     const heightMax = parseInt(form.alturaMax);
     const weightMin = parseInt(form.pesoMin);
     const weightMax = parseInt(form.pesoMax);
 
-    // console.log(form);
-    // console.log(weightMin);
-    // console.log(weightMax);
-    // console.log(heightMax);
-    // console.log(heightMin);
     try {
       const response = await axios.post("http://localhost:3001/dogs/", {
         ...form,

@@ -6,12 +6,10 @@ import Home from "./views/home/home";
 import Landing from "./views/landing/landing";
 import Bar from "./components/filters/filters";
 import Editor from "./views/editor/editor";
-// import { useEffect } from "react";
-// import { useSelector } from "react-redux";
+import Delete from "./views/delete/delete";
 
 function App() {
   const location = useLocation();
-  // const allDogs = useSelector((state)=>state.allDogs)
 
   return (
     <div className="App">
@@ -22,6 +20,7 @@ function App() {
         <Route path="/details/:id" element={<Details />} />
         <Route path="/creator" element={<Creator />} />
         <Route path="/editor" element={<Editor />} />
+        <Route path="/delete" element={<Delete />} />
       </Routes>
     </div>
   );
