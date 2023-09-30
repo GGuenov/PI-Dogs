@@ -23,7 +23,7 @@ const editedDogDB = async (
     include: Temperament,
   });
 
-  // if (!updateDog) return null;
+  if (!updateDog) return "Chequeate bien el nombre...";
 
   await updateDog.update({
     name,

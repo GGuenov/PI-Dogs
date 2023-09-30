@@ -22,7 +22,9 @@ const getOnlyDBDogsHandler = async (req, res) => {
 const getDogsHandler = async (req, res) => {
   try {
     const responseAPI = await getAllDogs();
-    const responseDB = await getDBDogs();
+    let nextId = responseAPI.length + 1;
+    // console.log(nextId);
+    const responseDB = await getDBDogs(nextId);
 
     const todes = responseAPI.concat(responseDB);
     console.log("gato");

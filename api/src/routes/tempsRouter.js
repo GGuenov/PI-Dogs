@@ -5,4 +5,4 @@ const tempsRouter = Router();
 
 tempsRouter.get("/", getAllTemperamentsHandler);
 
-module.exports = tempsRouter;
+module.exports = { tempsRouter };

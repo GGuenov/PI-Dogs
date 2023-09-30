@@ -2,7 +2,6 @@ const { Temperament } = require("../db");
 const axios = require("axios");
 const { Sequelize } = require("sequelize");
 const { Router } = require("express");
-// const {getAllDogs} = require("../controllers/controllers");
 
 const router = Router();
 const { API_KEY } = process.env;
@@ -52,5 +51,4 @@ tempsRouter.get("/", async (req, res) => {
     }
   }
 });
-console.log(tempsRouter);
-module.exports = tempsRouter;
+module.exports = { tempsRouter };
