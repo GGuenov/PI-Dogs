@@ -26,7 +26,6 @@ function Card({ dog }) {
             onError={(e) => {
               e.target.onerror = null;
               e.target.src = imagePng;
-              // console.log(imagePng);
             }}
             alt={name}
           />

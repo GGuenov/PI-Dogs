@@ -19,7 +19,7 @@ const Bar = () => {
 
   // Temperamentos
 
-  const URLTemps = "http://localhost:3001/temperaments";
+  const URLTemps = "/temperaments";
 
   const [temps, setTemps] = useState([]);
 

@@ -7,7 +7,10 @@ import "./index.module.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
-//import getDogsById from "";
+
+import axios from "axios";
+
+axios.defaults.baseURL = `http://localhost:3001`;
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 

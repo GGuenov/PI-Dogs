@@ -11,14 +11,14 @@ export const GET_ALL = "GET_ALL";
 
 export function getDogs() {
   return async function (dispatch) {
-    const response = await axios.get(`http://localhost:3001/dogs/`);
+    const response = await axios.get(`/dogs/`);
 
     return dispatch({ type: GET_DOGS, payload: response.data });
   };
 }
 export function getByRaza(name) {
   return async function (dispatch) {
-    const response = await axios.get(`http://localhost:3001/dogs/:${name}`);
+    const response = await axios.get(`/dogs/:${name}`);
     return dispatch({
       type: GET_BY_RAZA,
       payload: response.data,
@@ -57,14 +57,14 @@ export const filteredTemps = (temperament) => {
   return async function (dispatch) {
     try {
       if (temperament === "Todos") {
-        const response = await axios.get("http://localhost:3001/dogs/");
+        const response = await axios.get(`/dogs/`);
         const data = response.data;
         return dispatch({
           type: FILTER_TEMP,
           payload: data,
         });
       } else {
-        const response = await axios.get("http://localhost:3001/dogs/");
+        const response = await axios.get(`/dogs/`);
         const data = response.data;
         const dogos = data.filter(
           (dog) => dog.temperament && dog.temperament.includes(temperament)

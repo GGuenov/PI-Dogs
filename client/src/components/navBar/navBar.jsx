@@ -2,7 +2,7 @@ import styles from "./navBar.module.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-const URL = "http://localhost:3001/dogs";
+const URL = "/dogs";
 function NavBar() {
   const navigate = useNavigate();
   const [name, setName] = useState("");

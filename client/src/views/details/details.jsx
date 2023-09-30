@@ -17,7 +17,7 @@ const Details = () => {
   //     clearDetails()
   //   })
   // }, [dispatch]);
-  const URL = `http://localhost:3001/dogs/`;
+  const URL = `/dogs/`;
   useEffect(() => {
     const getOneDog = async () => {
       try {

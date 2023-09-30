@@ -45,6 +45,12 @@ const Creator = () => {
     setErrors(validate({ ...form, [property]: value }));
     setForm({ ...form, [property]: value });
   };
+  const imageChangeHandler = (event) => {
+    const property = event.target.name;
+    const value = event.target.value;
+    setErrors(validate({ ...form, [property]: value }));
+    setForm({ ...form, [property]: value });
+  };
 
   const resetForm = () => {
     setForm(initialFormState);
@@ -60,7 +66,7 @@ const Creator = () => {
     const weightMax = parseInt(form.pesoMax);
 
     try {
-      const response = await axios.post("http://localhost:3001/dogs/", {
+      const response = await axios.post("/dogs/", {
         ...form,
         heightMin,
         heightMax,
@@ -77,7 +83,7 @@ const Creator = () => {
     }
   };
 
-  const URLTemps = "http://localhost:3001/temperaments";
+  const URLTemps = "/temperaments";
 
   const [temps, setTemps] = useState([]);
 
@@ -100,18 +106,21 @@ const Creator = () => {
     </option>
   ));
 
+  const selected = form.temperament.map((id) => {
+    const temp = temps.find((temp) => temp.id === id);
+    return temp ? temp.name + ", " : null;
+  });
+  // const tidySelected = se;
+
+  console.log(temps);
+  console.log(selected);
+
   const handleSelect = (e) => {
     e.preventDefault();
     setForm({
       ...form,
       temperament: [...form.temperament, e.target.value],
     });
-    // setErrors(
-    //   validate({
-    //     ...input,
-    //     [e.target.name]: e.target.value,
-    //   })
-    // );
   };
 
   return (
@@ -119,121 +128,110 @@ const Creator = () => {
       <NavLink to="/home">
         <button className={style.button}>Volver!</button>
       </NavLink>
-      <form className={style.imputes} onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <h1>Crea tu propio perro:</h1>
-        <div>
-          <label>Nombre</label>
-          <input
-            type="text"
-            value={form.name}
-            onChange={changeHandler}
-            name="name"
-          />
-          {errors.name && <span className={style.errores}>{errors.name}</span>}
-        </div>
-        <div>
-          <label>Altura Máxima</label>
-          <input
-            type="number"
-            value={form.alturaMax}
-            onChange={changeHandler}
-            name="alturaMax"
-          />
-          {errors.alturaMax && (
-            <span className={style.errores}>{errors.alturaMax}</span>
-          )}
-        </div>
-        <div>
-          <label>Altura Mínima</label>
-          <input
-            type="number"
-            value={form.alturaMin}
-            onChange={changeHandler}
-            name="alturaMin"
-          />
-          {errors.alturaMin && (
-            <span className={style.errores}>{errors.alturaMin}</span>
-          )}
-        </div>
-        <div>
-          <label>Peso Máximo</label>
-          <input
-            type="number"
-            value={form.pesoMax}
-            onChange={changeHandler}
-            name="pesoMax"
-          />
-          {errors.pesoMax && (
-            <span className={style.errores}>{errors.pesoMax}</span>
-          )}
-        </div>
-        <div>
-          <label>Peso Mínima</label>
-          <input
-            type="number"
-            value={form.pesoMin}
-            onChange={changeHandler}
-            name="pesoMin"
-          />
-          {errors.pesoMin && (
-            <span className={style.errores}>{errors.pesoMin}</span>
-          )}
-        </div>
+        <div className={style.imputes}>
+          <div>
+            <label>Nombre</label>
+            <input
+              type="text"
+              value={form.name}
+              onChange={changeHandler}
+              name="name"
+            />
+            {errors.name && (
+              <span className={style.errores}>{errors.name}</span>
+            )}
+          </div>
+          <div>
+            <label>Altura Máxima</label>
+            <input
+              type="number"
+              value={form.alturaMax}
+              onChange={changeHandler}
+              name="alturaMax"
+            />
+            {errors.alturaMax && (
+              <span className={style.errores}>{errors.alturaMax}</span>
+            )}
+          </div>
+          <div>
+            <label>Altura Mínima</label>
+            <input
+              type="number"
+              value={form.alturaMin}
+              onChange={changeHandler}
+              name="alturaMin"
+            />
+            {errors.alturaMin && (
+              <span className={style.errores}>{errors.alturaMin}</span>
+            )}
+          </div>
+          <div>
+            <label>Peso Máximo</label>
+            <input
+              type="number"
+              value={form.pesoMax}
+              onChange={changeHandler}
+              name="pesoMax"
+            />
+            {errors.pesoMax && (
+              <span className={style.errores}>{errors.pesoMax}</span>
+            )}
+          </div>
+          <div>
+            <label>Peso Mínima</label>
+            <input
+              type="number"
+              value={form.pesoMin}
+              onChange={changeHandler}
+              name="pesoMin"
+            />
+            {errors.pesoMin && (
+              <span className={style.errores}>{errors.pesoMin}</span>
+            )}
+          </div>
 
-        <div>
-          <label>Años de vida</label>
-          <input
-            type="text"
-            value={form.lifeSpan}
-            onChange={changeHandler}
-            name="lifeSpan"
-          />
-          {errors.lifeSpan && (
-            <span className={style.errores}>{errors.lifeSpan}</span>
-          )}
+          <div>
+            <label>Años de vida</label>
+            <input
+              type="text"
+              value={form.lifeSpan}
+              onChange={changeHandler}
+              name="lifeSpan"
+            />
+            {errors.lifeSpan && (
+              <span className={style.errores}>{errors.lifeSpan}</span>
+            )}
+          </div>
+          <div>
+            <label>Imagen</label>
+            <input
+              type="url"
+              value={form.image}
+              onChange={imageChangeHandler}
+              name="image"
+            />
+            {errors.image && (
+              <span className={style.errores}>{errors.image}</span>
+            )}
+          </div>
+          <div>
+            <article className={style.info}>
+              <label htmlFor="temperamento">Temperamento </label>
+              <select
+                name="temperament"
+                id="temperament"
+                onChange={handleSelect}
+              >
+                <option value="">Selecciona un temperamento</option>
+                {listTemps}
+              </select>
+            </article>
+            <labell>{selected}</labell>
+            {/* <input value={selected} /> */}
+          </div>
         </div>
-        <div>
-          <label>Imagen</label>
-          <input
-            type="url"
-            value={form.image}
-            onChange={changeHandler}
-            name="image"
-          />
-          {errors.image && (
-            <span className={style.errores}>{errors.image}</span>
-          )}
-        </div>
-
-        <article className={style.info}>
-          <label htmlFor="temperamento">Temperamento </label>
-          <select name="temperament" id="temperament" onChange={handleSelect}>
-            <option value="">Selecciona un temperamento</option>
-            {listTemps}
-          </select>
-        </article>
-        <article className={style.info}>
-          <label htmlFor="temperamento1">Temperamento </label>
-          <select name="temperament1" id="temperament1" onChange={handleSelect}>
-            <option value="">Selecciona un temperamento</option>
-            {listTemps}
-          </select>
-        </article>
-        <article className={style.info}>
-          <label htmlFor="temperamento2">Temperamento </label>
-          <select name="temperament2" id="temperament2" onChange={handleSelect}>
-            <option value="">Selecciona un temperamento</option>
-            {listTemps}
-          </select>
-        </article>
-        <article className={style.info}>
-          <label htmlFor="temperamento3">Temperamento </label>
-          <select name="temperament3" id="temperament3" onChange={handleSelect}>
-            <option value="">Selecciona un temperamento</option>
-            {listTemps}
-          </select>
-        </article>
-
         <p className={errors.temperament ? style.errors : ""}>
           {errors.temperament ? errors.temperament : null}
         </p>

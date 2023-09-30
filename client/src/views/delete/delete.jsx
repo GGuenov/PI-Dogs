@@ -13,7 +13,7 @@ const Delete = () => {
   useEffect(() => {
     const bringBreedsDB = async () => {
       try {
-        const res = await axios.get("http://localhost:3001/dogs/editables");
+        const res = await axios.get("/dogs/editables");
         const inTheOven = res.data;
         setInTheOven(inTheOven);
       } catch (error) {
@@ -33,9 +33,7 @@ const Delete = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.delete(
-        `http://localhost:3001/dogs/delete/${form}`
-      );
+      const response = await axios.delete(`/dogs/delete/${form}`);
       console.log(response);
       alert(`Era ${form}, ahora es pollo!!`);
       resetForm();

@@ -1,6 +1,11 @@
 .texto {
   color: blue;
   display: flex;
+  /* position: fixed;
+  float: initial;
+  justify-content: flex-end; */
+  scroll-snap-align: center;
+  z-index: 10;
 }
 .sideBar {
   align-items: flex-start;

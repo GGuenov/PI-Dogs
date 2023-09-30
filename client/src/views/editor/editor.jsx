@@ -58,13 +58,8 @@ const Editor = () => {
     const weightMin = parseInt(form.pesoMin);
     const weightMax = parseInt(form.pesoMax);
 
-    // console.log(form);
-    // console.log(weightMin);
-    // console.log(weightMax);
-    // console.log(heightMax);
-    // console.log(heightMin);
     try {
-      const response = await axios.put("http://localhost:3001/dogs/edit", {
+      const response = await axios.put("/dogs/edit", {
         ...form,
         heightMin,
         heightMax,
@@ -81,7 +76,7 @@ const Editor = () => {
     }
   };
 
-  const URLTemps = "http://localhost:3001/temperaments";
+  const URLTemps = "/temperaments";
 
   const [temps, setTemps] = useState([]);
 
@@ -103,7 +98,7 @@ const Editor = () => {
       {temperament.name}{" "}
     </option>
   ));
-  const URLname = "http://localhost:3001/dogs/editables";
+  const URLname = "/dogs/editables";
 
   const [names, setNames] = useState([]);
 

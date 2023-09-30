@@ -1,15 +1,15 @@
 .errores {
   color: red;
 }
-.imputes {
+/* .imputes {
   display: flexbox;
-  justify-content: flex-end;
-}
+  justify-content: center;
+} */
 .imputes input {
   background-color: rgb(185, 185, 205);
   text-decoration: double;
-  display: table-header-group;
-  justify-content: end;
+  display: table-column-group;
+  justify-content: center;
   margin: 2%;
 }
 .info {
