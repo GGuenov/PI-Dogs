@@ -93,15 +93,11 @@ async function getDogBreedsByName(req, res) {
     );
 
     if (matchedBreeds.length === 0) {
-      // Si no se encontraron razas, mostrar mensaje adecuado
       return res
         .status(404)
         .json({ message: "No se encontraron razas de perros con ese nombre." });
     }
 
-    // Aquí puedes realizar la búsqueda en tu base de datos local y combinar los resultados con las razas de la API si es necesario
-
-    // Devolver las razas encontradas
     res.json(matchedBreeds);
   } catch (error) {
     console.error(error);

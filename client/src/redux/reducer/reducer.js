@@ -5,10 +5,15 @@ import {
   SORT_ALPHA,
   FILTER_ORIGIN,
   FILTER_TEMP,
-  FILTER_BY_WEIGHT,
+  FILTER_BY_WEIGHT_RANGE,
 } from "../actions/actions";
 
-let initialState = { allDogs: [], dogs: [], temperament: [] };
+let initialState = {
+  allDogs: [],
+  dogs: [],
+  temperament: [],
+  weightRangeSlider: [0, 200],
+};
 function rootReducer(state = initialState, action) {
   switch (action.type) {
     case GET_DOGS:
@@ -22,11 +27,20 @@ function rootReducer(state = initialState, action) {
         ...state,
         allDogs: action.payload,
       };
-    case FILTER_BY_WEIGHT:
-      const livianos = state.dogs.filter((dog) => dog.weightMax < 20);
+    case FILTER_BY_WEIGHT_RANGE:
+      console.log(state);
+      const rangeds = state.dogs.filter(
+        (dog) =>
+          action.payload[0] < dog.weightMax && dog.weightMax < action.payload[1]
+      );
+      // console.log(dog.weightMax);
+      console.log(action.payload[0]);
+      console.log(action.payload[1]);
+      console.log(state.dogs);
+      console.log(rangeds);
       return {
         ...state,
-        allDogs: livianos,
+        allDogs: rangeds,
       };
     case SORT_WEIGHT: {
       const weightOrder = action.payload;
@@ -39,7 +53,6 @@ function rootReducer(state = initialState, action) {
         }
         return 0;
       });
-      // console.log(allDogs);
 
       return {
         ...state,

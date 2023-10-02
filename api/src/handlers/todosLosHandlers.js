@@ -21,14 +21,18 @@ const getOnlyDBDogsHandler = async (req, res) => {
 
 const getDogsHandler = async (req, res) => {
   try {
-    const responseAPI = await getAllDogs();
-    let nextId = responseAPI.length + 1;
+    let nextId = 1;
     // console.log(nextId);
     const responseDB = await getDBDogs(nextId);
+    if (!responseDB) {
+      const responseAPI = await getAllDogs();
+      nextId = responseAPI.length + 1;
+      const response = responseAPI.concat(responseDB);
+      res.status(200).json(response);
+    }
 
-    const todes = responseAPI.concat(responseDB);
     console.log("gato");
-    res.status(200).json(todes);
+    res.status(200).json(responseDB);
   } catch (error) {
     res.status(500).json(error);
   }
@@ -65,6 +69,8 @@ const getRazassHandler = async (req, res) => {
 };
 
 const createDogHandler = async (req, res) => {
+  // console.log(90909090);
+  // console.log(body);
   const {
     name,
     heightMin,

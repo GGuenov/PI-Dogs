@@ -8,7 +8,7 @@ const URL = `https://api.thedogapi.com/v1/breeds/?api_key=${API_KEY}`;
 const getAllDogs = async () => {
   try {
     const data = await axios.get(URL);
-    console.log(data.data.length);
+    // console.log(data.data.length);
     const response = await tidyrer(data.data);
 
     return response;

@@ -1,6 +1,52 @@
+.todes {
+  display: grid;
+}
 .section {
   margin-top: 15px;
 }
 .livianos {
   margin-top: 10px;
+}
+.slider {
+  display: contents;
+  justify-content: space-around;
+
+  position: absolute;
+  cursor: cell;
+  width: 50%;
+  height: 10px;
+
+  background-color: #fff;
+  border: 1px solid #adb5bd;
+  transition: 0.4s;
+  border-radius: 300px;
+}
+.container {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 60%;
+  margin: 0 auto;
+}
+.diver {
+  margin-top: 40px;
+  /* border: #ad1128; */
+  display: flex;
+  justify-content: space-between;
+  resize: both;
+  width: 90%;
+}
+.label {
+  margin-top: 50px;
+  position: absolute;
+  font-size: large;
+  /* top: 0px; */
+  left: 0; /* Adjust the left value to center it horizontally if needed */
+  width: 100%; /* Make the label span the full width of the .diver div */
+  text-align: center; /* Center the text horizontally */
+
+  padding: 5px; /* Add padding for better visibility */
+  border-radius: 5px; /* Add rounded corners */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Add a shadow for contrast */
 }

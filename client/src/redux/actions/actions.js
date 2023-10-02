@@ -1,11 +1,12 @@
 import axios from "axios";
+// import weightRange from "../../components/filters/filters";
 
 export const GET_DOGS = "GET_DOGS";
 export const GET_BY_RAZA = "GET_DOGS";
 export const FILTER_ORIGIN = "FILTER_ORIGIN";
 export const SORT_WEIGHT = "SORT_WEIGHT";
 export const SORT_ALPHA = "ALPHABETIC";
-export const FILTER_BY_WEIGHT = "FILTER_BY_WEIGHT";
+export const FILTER_BY_WEIGHT_RANGE = "FILTER_BY_WEIGHT_RANGE";
 export const FILTER_TEMP = "FILTER_TEMP";
 export const GET_ALL = "GET_ALL";
 
@@ -25,6 +26,13 @@ export function getByRaza(name) {
     });
   };
 }
+export const weightRanger = (newRange) => {
+  console.log(newRange);
+  return {
+    type: FILTER_BY_WEIGHT_RANGE,
+    payload: newRange,
+  };
+};
 
 export const orderByOrigin = (origin) => {
   return {
@@ -44,12 +52,6 @@ export const orderredByAlphabet = (order) => {
   return {
     type: SORT_ALPHA,
     payload: order,
-  };
-};
-
-export const filtByWeight = () => {
-  return {
-    type: FILTER_BY_WEIGHT,
   };
 };
 

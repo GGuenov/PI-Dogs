@@ -3,9 +3,11 @@ import axios from "axios";
 import style from "./filters.module.css";
 import { useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import Slider from "rc-slider";
+import "rc-slider/assets/index.css";
 import {
   filteredTemps,
-  filtByWeight,
+  weightRanger,
   orderByOrigin,
   orderedByWeight,
   orderredByAlphabet,
@@ -17,11 +19,10 @@ const Bar = () => {
 
   const dispatch = useDispatch();
 
-  // Temperamentos
-
   const URLTemps = "/temperaments";
 
   const [temps, setTemps] = useState([]);
+  const [weightRangeSlider, setWeightRangeSlider] = useState([0, 200]);
 
   useEffect(() => {
     const fetchTemps = async () => {
@@ -36,20 +37,20 @@ const Bar = () => {
     fetchTemps();
   }, []);
 
-  console.log(temps);
   const listTemps = temps.map((temperament) => (
     <option key={temperament.id} value={temperament.name}>
       {temperament.name}{" "}
     </option>
   ));
 
-  // Dispatches
-
   const handleOrigin = (event) => {
     dispatch(orderByOrigin(event.target.value));
   };
-  const handlerchange = (event) => {
-    dispatch(filtByWeight(event.target.value));
+  const handleWeightRangeChange = (value) => {
+    // console.log(value);
+    setWeightRangeSlider(value);
+    // console.log(weightRangeSlider);
+    dispatch(weightRanger(value));
   };
 
   const handleAlphabetic = (event) => {
@@ -65,60 +66,76 @@ const Bar = () => {
   };
 
   return (
-    <section className={style.section}>
-      {isHomeRoute && (
-        <article className={style.filtros}>
-          <label htmlFor="">Orden Alfabético: </label>
-          <select
-            name="Alfabéticamente"
-            id=""
-            className={style.selector}
-            onChange={handleAlphabetic}
-          >
-            <option value="Default">Default</option>
-            <option value="Ascendente">Ascendente</option>
-            <option value="Descendente">Descendente</option>
-          </select>
-          <label htmlFor="">Peso: </label>
-          <select
-            name="Peso"
-            id=""
-            className={style.selector}
-            onChange={handleWeight}
-          >
-            <option value="Default">Default</option>
-            <option value="Mayor">Mayor</option>
-            <option value="Menor">Menor</option>
-          </select>
-          <label htmlFor="">Temperamentos: </label>
-          <select
-            name="Temperamentos"
-            id=""
-            className={style.selector}
-            onChange={handleTemperaments}
-          >
-            <option value="Todos">Todos</option>
-            {listTemps}
-          </select>
-          <label htmlFor="">Fuente: </label>
-          <select
-            name="Origen"
-            id=""
-            className={style.selector}
-            onChange={handleOrigin}
-          >
-            <option value="Todos">Todos</option>
-            <option value="API">API</option>
-            <option value="DB">Base de Datos</option>
-          </select>
-        </article>
-      )}
-      {isHomeRoute && (
-        <button className={style.livianos} onClick={handlerchange}>
-          Mas livianos
-        </button>
-      )}
-    </section>
+    <div className={style.todes}>
+      <section className={style.section}>
+        {isHomeRoute && (
+          <article className={style.filtros}>
+            <label htmlFor="">Orden Alfabético: </label>
+            <select
+              name="Alfabéticamente"
+              id=""
+              className={style.selector}
+              onChange={handleAlphabetic}
+            >
+              <option value="Default">Default</option>
+              <option value="Ascendente">Ascendente</option>
+              <option value="Descendente">Descendente</option>
+            </select>
+            <label htmlFor="">Peso: </label>
+            <select
+              name="Peso"
+              id=""
+              className={style.selector}
+              onChange={handleWeight}
+            >
+              <option value="Default">Default</option>
+              <option value="Mayor">Mayor</option>
+              <option value="Menor">Menor</option>
+            </select>
+            <label htmlFor="">Temperamentos: </label>
+            <select
+              name="Temperamentos"
+              id=""
+              className={style.selector}
+              onChange={handleTemperaments}
+            >
+              <option value="Todos">Todos</option>
+              {listTemps}
+            </select>
+            <label htmlFor="">Fuente: </label>
+            <select
+              name="Origen"
+              id=""
+              className={style.selector}
+              onChange={handleOrigin}
+            >
+              <option value="Todos">Todos</option>
+              <option value="API">API</option>
+              <option value="DB">Base de Datos</option>
+            </select>
+          </article>
+        )}
+      </section>
+      <label className={style.label}>
+        Definí el rango pesario que mas te guste
+      </label>
+      <div className={style.container}>
+        {isHomeRoute && (
+          <div className={style.diver}>
+            <hi>0lb...</hi>
+            <Slider
+              range
+              min={0}
+              step={10}
+              max={200}
+              value={weightRangeSlider}
+              onChange={handleWeightRangeChange}
+            ></Slider>
+            <hi>...180lb</hi>
+          </div>
+        )}
+      </div>
+    </div>
   );
 };
 
