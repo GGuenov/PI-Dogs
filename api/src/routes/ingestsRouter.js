@@ -1,7 +1,12 @@
 const { Router } = require("express");
-const { dogIngesterHandler } = require("../handlers/gathererHandlers");
+const {
+  dogIngesterHandler,
+  catIngesterHandler,
+} = require("../handlers/gathererHandlers");
 
 const ingestsRouter = Router();
 
-ingestsRouter.get("/", dogIngesterHandler);
+ingestsRouter.get("/dogs", dogIngesterHandler);
+ingestsRouter.get("/cats", catIngesterHandler);
+
 module.exports = { ingestsRouter };

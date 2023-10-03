@@ -31,10 +31,6 @@ function Home() {
     //};
   }, [dispatch]); //el cuándo, va entre []
 
-  // useEffect(() => {
-  //   if (allDogs.length < 10) setCurrentPage(1);
-  // }, [allDogs]);
-
   console.log(allDogs);
 
   return (

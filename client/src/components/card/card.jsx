@@ -8,8 +8,8 @@ function Card({ dog }) {
   const imageJpg = image + ".jpg";
   const imagePng = image + ".png";
   let imagen = "";
-  if (id > 172) imagen = image;
-  else imagen = imageJpg;
+  // if (id > 172) imagen = image;
+  // else imagen = imageJpg;
 
   // ("https://www.loveyourdog.com/wp-content/uploads/2021/05/Dog-Looks-at-me-While-Pooping.jpg");
   // console.log(image.length);
@@ -22,7 +22,7 @@ function Card({ dog }) {
         <div className={style.carta}>
           <img
             className={style.image}
-            src={imagen}
+            src={imageJpg}
             onError={(e) => {
               e.target.onerror = null;
               e.target.src = imagePng;
@@ -30,7 +30,7 @@ function Card({ dog }) {
             alt={name}
           />
           <p className={style.texto}>{name}</p>
-          <p className={style.texto}>{weightMax}lb</p>
+          <p className={style.texto}>{weightMax || 1}lb</p>
           <p className={style.texto}>{pocosTemps?.map((temp) => temp + " ")}</p>
         </div>
       </NavLink>

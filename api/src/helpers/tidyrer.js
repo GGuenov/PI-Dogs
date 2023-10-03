@@ -31,5 +31,37 @@ const tidyrer = async (data) => {
   });
   return response;
 };
+const catTidyrer = async (data) => {
+  let siguienteId = 0;
+  const response = data.map((cat) => {
+    let [weightMin, weightMax] = cat.weight.imperial.split(" - ");
+    let temperament = cat.hasOwnProperty("temperament")
+      ? cat.temperament.split(", ")
+      : [];
 
-module.exports = { tidyrer };
+    const image = cat.hasOwnProperty("reference_image_id")
+      ? `https://cdn2.thecatapi.com/images/${cat.reference_image_id}`
+      : "Default image URL";
+
+    const lifeSpan = cat.hasOwnProperty("life_span")
+      ? cat.life_span
+      : "Unknown lifespan";
+
+    siguienteId++;
+    return {
+      id: siguienteId,
+      name: cat.name,
+      weightMin: Number(weightMin),
+      weightMax: Number(weightMax),
+      heightMin: 1,
+      heightMax: 2,
+      temperament: temperament,
+      lifeSpan: lifeSpan,
+      image: image,
+      source: "API",
+    };
+  });
+  return response;
+};
+
+module.exports = { tidyrer, catTidyrer };

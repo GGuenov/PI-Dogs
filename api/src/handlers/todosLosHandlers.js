@@ -1,4 +1,5 @@
 const { getAllDogs, getDBDogs } = require("../controllers/getAllDogs");
+const { getAllCats, getDBCats } = require("../controllers/getAllCats.js");
 const { deleteDogDB, editedDogDB } = require("../controllers/DBControllers");
 
 const {
@@ -22,17 +23,14 @@ const getOnlyDBDogsHandler = async (req, res) => {
 const getDogsHandler = async (req, res) => {
   try {
     let nextId = 1;
-    // console.log(nextId);
     const responseDB = await getDBDogs(nextId);
-    if (!responseDB) {
-      const responseAPI = await getAllDogs();
-      nextId = responseAPI.length + 1;
-      const response = responseAPI.concat(responseDB);
-      res.status(200).json(response);
-    }
 
+    nextId = responseDB.length + 1;
+
+    const responseDBCats = await getDBCats(nextId);
+    const response = responseDB.concat(responseDBCats);
     console.log("gato");
-    res.status(200).json(responseDB);
+    res.status(200).json(response);
   } catch (error) {
     res.status(500).json(error);
   }

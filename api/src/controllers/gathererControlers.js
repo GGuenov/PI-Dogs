@@ -1,15 +1,16 @@
 const { default: axios } = require("axios");
-const { Dog, Temperament } = require("../db");
-const { tidyrer } = require("../helpers/tidyrer");
+const { Dog, Temperament, Cat } = require("../db");
+const { tidyrer, catTidyrer } = require("../helpers/tidyrer");
 // const { createDogDB } = require("../controllers/dogsControllers");
 
 const API_KEY = process.env;
 
-const URL = `https://api.thedogapi.com/v1/breeds/?api_key=${API_KEY}`;
+const URL1 = `https://api.thedogapi.com/v1/breeds/?api_key=${API_KEY}`;
+const URL2 = `https://api.thecatapi.com/v1/breeds/?api_key=${API_KEY}`;
 
 const dogIngester = async () => {
   try {
-    const loadThemAll = await axios.get(URL);
+    const loadThemAll = await axios.get(URL1);
 
     const response = await tidyrer(loadThemAll.data);
     Promise.all(
@@ -53,4 +54,50 @@ const dogIngester = async () => {
   }
 };
 
-module.exports = { dogIngester };
+//---------------------------------------------------------------------------------------------------
+
+const catIngester = async () => {
+  try {
+    const loadThemAll = await axios.get(URL2);
+    const response = await catTidyrer(loadThemAll.data);
+    Promise.all(
+      response.map(async (cat) => {
+        const {
+          name,
+          heightMin,
+          heightMax,
+          weightMin,
+          weightMax,
+          lifeSpan,
+          temperament,
+          image,
+        } = cat;
+
+        const createdCat = await Cat.create({
+          name,
+          heightMin,
+          heightMax,
+          weightMin,
+          weightMax,
+          lifeSpan,
+          temperament,
+          image,
+        });
+        for (const findId of temperament) {
+          const findTemp = await Temperament.findOne({
+            where: { name: findId },
+          });
+
+          if (findTemp) {
+            await createdCat.addTemperament(findTemp);
+          }
+        }
+      })
+    );
+    return response;
+  } catch (error) {
+    console.error(error.message);
+  }
+};
+
+module.exports = { dogIngester, catIngester };

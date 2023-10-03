@@ -5,7 +5,7 @@ const { Router } = require("express");
 
 const router = Router();
 const { API_KEY } = process.env;
-const URL = `https://api.thedogapi.com/v1/breeds/`;
+const URL = `https://api.thecatapi.com/v1/breeds/`;
 
 const tempsRouter = Router();
 
