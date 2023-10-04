@@ -11,13 +11,13 @@
     transform: scale(1.85);
     color: rgb(226, 62, 62);
     z-index: 10;
-    text-decoration: none;
+    text-decoration-line: none;
   }
 }
 /* .todo {
 } */
 .texto {
-  text-decoration-line: none;
+  text-overflow: ellipsis;
 
   font-weight: bold;
   font-size: large;

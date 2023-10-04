@@ -60,16 +60,6 @@ function Home() {
         <NavBar handleChange={handleChange} handleSubmit={handleSubmit} />
       </div>
       <div className={style.cards}>
-        <Slider
-          className={style.Slider}
-          range
-          min={0}
-          step={5}
-          max={40}
-          value={heightRangeSlider}
-          onChange={handlerheightRangeChange}
-          marks={{ 10: "10", 20: "20", 30: "30" }}
-        ></Slider>
         <CardsContainer allDogs={allDogs} />
       </div>
     </div>

@@ -8,11 +8,14 @@ import "rc-slider/assets/index.css";
 import {
   filteredTemps,
   weightRanger,
+  heightRanger,
   orderByOrigin,
   orderedByWeight,
   orderredByAlphabet,
 } from "../../redux/actions/actions";
 import sausageDog from "../filters/sausageDog.jpg";
+import alto from "../filters/alto.jpg";
+import bajo from "../filters/bajo.jpg";
 
 const Bar = () => {
   const location = useLocation();
@@ -24,6 +27,7 @@ const Bar = () => {
 
   const [temps, setTemps] = useState([]);
   const [weightRangeSlider, setWeightRangeSlider] = useState([0, 200]);
+  const [heightRangeSlider, setHeightRangeSlider] = useState([0, 40]);
 
   useEffect(() => {
     const fetchTemps = async () => {
@@ -53,6 +57,10 @@ const Bar = () => {
     dispatch(weightRanger(value));
   };
 
+  const handlerheightRangeChange = (value) => {
+    setHeightRangeSlider(value);
+    dispatch(heightRanger(value));
+  };
   const handleAlphabetic = (event) => {
     dispatch(orderredByAlphabet(event.target.value));
   };
@@ -110,8 +118,8 @@ const Bar = () => {
               onChange={handleOrigin}
             >
               <option value="Todos">Todos</option>
-              <option value="API">API</option>
-              <option value="DB">Base de Datos</option>
+              <option value="API">Perros</option>
+              <option value="DB">Gatos</option>
             </select>
           </article>
         </section>
@@ -134,33 +142,34 @@ const Bar = () => {
               value={weightRangeSlider}
               onChange={handleWeightRangeChange}
               marks={{
-                // 0: "0",
-                // 10: "10",
-                // 20: "20",
                 30: "30",
-                // 40: "40",
-                // 50: "50",
                 60: "60",
-                // 70: "70",
-                // 80: "80",
                 90: "90",
-                // 100: "100",
-                // 110: "110",
                 120: "120",
-                // 130: "130",
-                // 140: "140",
                 150: "150",
-                // 160: "160",
-                // 170: "170",
                 180: "180",
-                // 190: "190",
-                // 200: "200",
               }}
             ></Slider>
             <img
               height={50}
               src="https://img.icons8.com/ios/500w/fat-dog.png"
             />
+          </div>
+        )}
+        {isHomeRoute && (
+          <div className={style.diver}>
+            <img height={50} src={bajo} />
+            <Slider
+              className={style.Slider}
+              range
+              min={0}
+              step={5}
+              max={40}
+              value={heightRangeSlider}
+              onChange={handlerheightRangeChange}
+              marks={{ 10: "10", 20: "20", 30: "30" }}
+            ></Slider>
+            <img height={100} src={alto} />
           </div>
         )}
       </div>

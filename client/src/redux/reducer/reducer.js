@@ -87,9 +87,9 @@ function rootReducer(state = initialState, action) {
       let listedDogs;
 
       if (action.payload === "DB") {
-        listedDogs = state.dogs.filter((dog) => dog.id > 269);
+        listedDogs = state.dogs.filter((dog) => dog.id > 172);
       } else if (action.payload === "API") {
-        listedDogs = state.dogs.filter((dog) => dog.id <= 264);
+        listedDogs = state.dogs.filter((dog) => dog.id <= 172);
       } else if (action.payload === "Todos") {
         listedDogs = state.dogs;
       }

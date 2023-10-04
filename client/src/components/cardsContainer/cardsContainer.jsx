@@ -78,9 +78,14 @@ function CardsContainer({ allDogs }) {
   return (
     <div>
       <div className={style.texto}>
-        {displayedCards?.map((dog) => (
-          <Card key={dog.id} dog={dog} />
-        ))}
+        {allDogs.length > 7 ? (
+          displayedCards?.map((dog) => <Card key={dog.id} dog={dog} />)
+        ) : (
+          <h1>
+            "Posta?! De dónde queres que saque un perro con ese peso y de esa
+            altura?"
+          </h1>
+        )}
       </div>
       {renderPaginationButtons()}
     </div>
