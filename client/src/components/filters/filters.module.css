@@ -21,6 +21,15 @@
   transition: 0.4s;
   border-radius: 300px;
 }
+.Slider {
+  width: 1000px;
+  height: 10px;
+  background-color: #ffffff; /* Color de los puntos */
+  border-radius: 0%; /* Puntos redondeados */
+  margin-right: 5px; /* Espaciado entre puntos */
+  cursor: pointer; /* Cambia el cursor al pasar el mouse */
+  /* transform: rotate(270deg); */
+}
 .container {
   margin-top: 10px;
   display: flex;
@@ -33,7 +42,7 @@
   margin-top: 40px;
   /* border: #ad1128; */
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   resize: both;
   width: 90%;
 }

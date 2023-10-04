@@ -77,7 +77,6 @@ function CardsContainer({ allDogs }) {
 
   return (
     <div>
-      <div className={style.sideBar}></div>
       <div className={style.texto}>
         {displayedCards?.map((dog) => (
           <Card key={dog.id} dog={dog} />

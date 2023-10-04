@@ -24,11 +24,11 @@
   display: flex;
   justify-content: center;
 }
+
 .button {
   margin-top: 20px;
 }
 
-/* display: flexbox;
-  margin: 0%;
-  margin-left: 21.5cm;
-} */
+.Slider {
+  transform: rotate(90deg);
+}

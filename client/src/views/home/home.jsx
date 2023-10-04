@@ -3,10 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { getDogs } from "../../redux/actions/actions";
 import { NavLink } from "react-router-dom";
 import { getByRaza } from "../../redux/actions/actions";
-
+import Slider from "rc-slider";
+import "rc-slider/assets/index.css";
 import style from "./home.module.css";
 import CardsContainer from "../../components/cardsContainer/cardsContainer";
 import NavBar from "../../components/navBar/navBar";
+import { heightRanger } from "../../redux/actions/actions";
 
 function Home() {
   const dispatch = useDispatch(); //esto le manda actions a la store
@@ -17,7 +19,12 @@ function Home() {
     setSearchString(e.target.value);
   }
   console.log(searchString);
+  const [heightRangeSlider, setHeightRangeSlider] = useState([0, 40]);
 
+  const handlerheightRangeChange = (value) => {
+    setHeightRangeSlider(value);
+    dispatch(heightRanger(value));
+  };
   function handleSubmit(e) {
     e.preventDefault();
     dispatch(getByRaza(searchString));
@@ -53,6 +60,16 @@ function Home() {
         <NavBar handleChange={handleChange} handleSubmit={handleSubmit} />
       </div>
       <div className={style.cards}>
+        <Slider
+          className={style.Slider}
+          range
+          min={0}
+          step={5}
+          max={40}
+          value={heightRangeSlider}
+          onChange={handlerheightRangeChange}
+          marks={{ 10: "10", 20: "20", 30: "30" }}
+        ></Slider>
         <CardsContainer allDogs={allDogs} />
       </div>
     </div>

@@ -12,6 +12,7 @@ import {
   orderedByWeight,
   orderredByAlphabet,
 } from "../../redux/actions/actions";
+import sausageDog from "../filters/sausageDog.jpg";
 
 const Bar = () => {
   const location = useLocation();
@@ -31,7 +32,7 @@ const Bar = () => {
         const data = await res.data;
         setTemps(data);
       } catch (error) {
-        console.log(error);
+        console.error(error.message);
       }
     };
     fetchTemps();
@@ -47,9 +48,8 @@ const Bar = () => {
     dispatch(orderByOrigin(event.target.value));
   };
   const handleWeightRangeChange = (value) => {
-    // console.log(value);
     setWeightRangeSlider(value);
-    // console.log(weightRangeSlider);
+
     dispatch(weightRanger(value));
   };
 
@@ -67,8 +67,8 @@ const Bar = () => {
 
   return (
     <div className={style.todes}>
-      <section className={style.section}>
-        {isHomeRoute && (
+      {isHomeRoute && (
+        <section className={style.section}>
           <article className={style.filtros}>
             <label htmlFor="">Orden Alfabético: </label>
             <select
@@ -114,24 +114,53 @@ const Bar = () => {
               <option value="DB">Base de Datos</option>
             </select>
           </article>
-        )}
-      </section>
-      <label className={style.label}>
-        Definí el rango pesario que mas te guste
-      </label>
+        </section>
+      )}
+      {isHomeRoute && (
+        <label className={style.label}>
+          Definí el rango pesario que mas te guste
+        </label>
+      )}
       <div className={style.container}>
         {isHomeRoute && (
           <div className={style.diver}>
-            <hi>0lb...</hi>
+            <img height={50} src={sausageDog} />
             <Slider
+              className={style.Slider}
               range
               min={0}
               step={10}
               max={200}
               value={weightRangeSlider}
               onChange={handleWeightRangeChange}
+              marks={{
+                // 0: "0",
+                // 10: "10",
+                // 20: "20",
+                30: "30",
+                // 40: "40",
+                // 50: "50",
+                60: "60",
+                // 70: "70",
+                // 80: "80",
+                90: "90",
+                // 100: "100",
+                // 110: "110",
+                120: "120",
+                // 130: "130",
+                // 140: "140",
+                150: "150",
+                // 160: "160",
+                // 170: "170",
+                180: "180",
+                // 190: "190",
+                // 200: "200",
+              }}
             ></Slider>
-            <hi>...180lb</hi>
+            <img
+              height={50}
+              src="https://img.icons8.com/ios/500w/fat-dog.png"
+            />
           </div>
         )}
       </div>

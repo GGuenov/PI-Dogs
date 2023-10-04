@@ -7,6 +7,7 @@ export const FILTER_ORIGIN = "FILTER_ORIGIN";
 export const SORT_WEIGHT = "SORT_WEIGHT";
 export const SORT_ALPHA = "ALPHABETIC";
 export const FILTER_BY_WEIGHT_RANGE = "FILTER_BY_WEIGHT_RANGE";
+export const FILTER_BY_HEIGHT_RANGE = "FILTER_BY_WEIGHT_RANGE";
 export const FILTER_TEMP = "FILTER_TEMP";
 export const GET_ALL = "GET_ALL";
 
@@ -31,6 +32,13 @@ export const weightRanger = (newRange) => {
   console.log(newRange);
   return {
     type: FILTER_BY_WEIGHT_RANGE,
+    payload: newRange,
+  };
+};
+export const heightRanger = (newRange) => {
+  console.log(newRange);
+  return {
+    type: FILTER_BY_HEIGHT_RANGE,
     payload: newRange,
   };
 };

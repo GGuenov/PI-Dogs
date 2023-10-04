@@ -72,8 +72,8 @@ const Details = () => {
         <div className={styles.altPes}>
           <h3>Peso Máxima | {weightMax}lb</h3>
           <h3>Mínima | {weightMin}lb</h3>
-          <h3>Altura Máximo | {heightMax}lb</h3>
-          <h3> Mínimo | {heightMin}lb</h3>
+          <h3>Altura Máximo | {heightMax}cm</h3>
+          <h3> Mínimo | {heightMin}cm</h3>
         </div>
         <h3>Temperamento/s | {temperament?.map((temp) => temp + ", ")}</h3>
         <h3>Espectativa de vida | {lifeSpan}</h3>
