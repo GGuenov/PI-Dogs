@@ -1,5 +1,19 @@
 const axios = require("axios");
 const { Dog, Temperament } = require("../db");
+const { Op, Sequelize } = require("sequelize");
+
+const getDogByName = async (name) => {
+  try {
+    const response = await Dog.findAll({
+      where: { name: { [Op.iLike]: `%${name}%` } },
+
+      include: { model: Temperament },
+    });
+    return response;
+  } catch (error) {
+    console.error(error.message);
+  }
+};
 
 const createDogDB = async (
   name,
@@ -108,6 +122,7 @@ async function getDogBreedsByName(req, res) {
 }
 
 module.exports = {
+  getDogByName,
   createDogDB,
   getDetailsByNameEnAPI,
   getDetailsByNameEnDB,

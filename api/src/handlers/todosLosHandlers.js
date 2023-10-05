@@ -1,8 +1,9 @@
 const { getAllDogs, getDBDogs } = require("../controllers/getAllDogs");
 const { getAllCats, getDBCats } = require("../controllers/getAllCats.js");
 const { deleteDogDB, editedDogDB } = require("../controllers/DBControllers");
-
+const { getCatByName } = require("../controllers/catControllers");
 const {
+  getDogByName,
   createDogDB,
   getDetailsByNameEnAPI,
   getDetailsByNameEnDB,
@@ -38,14 +39,15 @@ const getDogsHandler = async (req, res) => {
 
 const getDetailsHandler = async (req, res) => {
   const { name } = req.params;
-  const source = isNaN(name) ? "DB" : "API";
+  console.log(name);
+
   try {
-    const responseAPI = await getDetailsByNameEnAPI(name);
-    if (responseAPI) res.status(200).json(responseAPI);
-    else {
-      const responseDB = await getDetailsByNameEnDB(name);
-      res.status(200).json(responseDB);
-    }
+    const isItADog = await getDogByName(name);
+    const isItACat = await getCatByName(name);
+    console.log(isItACat);
+    console.log(isItADog);
+    const all = isItADog.concat(isItACat);
+    res.status(200).json(all);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
