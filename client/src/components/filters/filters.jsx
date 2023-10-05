@@ -2,12 +2,13 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import style from "./filters.module.css";
 import { useLocation } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 import {
   filteredTemps,
   weightRanger,
+  getByRaza,
   heightRanger,
   orderByOrigin,
   orderedByWeight,
@@ -26,6 +27,7 @@ const Bar = () => {
   const URLTemps = "/temperaments";
 
   const [temps, setTemps] = useState([]);
+  const allDogs = useSelector((state) => state.allDogs);
   const [weightRangeSlider, setWeightRangeSlider] = useState([0, 200]);
   const [heightRangeSlider, setHeightRangeSlider] = useState([0, 40]);
 
@@ -33,7 +35,7 @@ const Bar = () => {
     const fetchTemps = async () => {
       try {
         const res = await axios.get(URLTemps);
-        const data = await res.data;
+        const data = res.data;
         setTemps(data);
       } catch (error) {
         console.error(error.message);
@@ -71,6 +73,17 @@ const Bar = () => {
 
   const handleTemperaments = (event) => {
     dispatch(filteredTemps(event.target.value));
+  };
+  const [name, setName] = useState("");
+  const handlerSubmit = (e) => {
+    e.preventDefault();
+    console.log(name);
+    dispatch(getByRaza(name));
+  };
+  const handlerChange = (e) => {
+    // e.preventDefault();
+    console.log(e.target.value);
+    setName(e.target.value);
   };
 
   return (
@@ -172,6 +185,17 @@ const Bar = () => {
             <img height={100} src={alto} />
           </div>
         )}
+      </div>
+      <div className={style.navBar}>
+        <h2>Buscá por Nombre</h2>
+        <form onSubmit={handlerSubmit}>
+          <input
+            placeholder="indique la raza"
+            type="search"
+            onChange={handlerChange}
+          />
+          <button type="submit">Buscar</button>
+        </form>
       </div>
     </div>
   );

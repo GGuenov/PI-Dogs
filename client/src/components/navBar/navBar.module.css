@@ -1,11 +1,10 @@
 .navBar {
-  margin: 0;
   border: none;
   outline: auto;
+  justify-content: space-around;
   width: 350px;
-  padding: 10px;
-  line-height: 10px;
-  margin-bottom: 30px;
-  margin-top: 10px;
+  line-height: 5px;
+  height: 80px;
+
   border-radius: 20px 20px 20px 20px;
 }

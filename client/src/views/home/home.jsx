@@ -1,38 +1,34 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getDogs } from "../../redux/actions/actions";
+import { getDogs, getByRaza } from "../../redux/actions/actions";
 import { NavLink } from "react-router-dom";
-import { getByRaza } from "../../redux/actions/actions";
-import Slider from "rc-slider";
-import "rc-slider/assets/index.css";
+// import {} from "../../redux/actions/actions";
+
 import style from "./home.module.css";
 import CardsContainer from "../../components/cardsContainer/cardsContainer";
 import NavBar from "../../components/navBar/navBar";
-import { heightRanger } from "../../redux/actions/actions";
 
 function Home() {
   const dispatch = useDispatch(); //esto le manda actions a la store
   const allDogs = useSelector((state) => state.allDogs); // me suscrivo al estado 'allDogs'
 
-  const [searchString, setSearchString] = useState("");
-  function handleChange(e) {
-    setSearchString(e.target.value);
-  }
-  console.log(searchString);
-  const [heightRangeSlider, setHeightRangeSlider] = useState([0, 40]);
+  // const [searchString, setSearchString] = useState("");
+  // function handleChange(e) {
 
-  const handlerheightRangeChange = (value) => {
-    setHeightRangeSlider(value);
-    dispatch(heightRanger(value));
-  };
-  function handleSubmit(e) {
-    e.preventDefault();
-    dispatch(getByRaza(searchString));
-  }
+  //   console.log(e.target.value);
+  //   setSearchString(e.target.value);
+  // }
+  // console.log(searchString);
+  // const [heightRangeSlider, setHeightRangeSlider] = useState([0, 40]);
+
+  // function handleSubmit(e) {
+  //   dispatch(getByRaza());
+  // }
 
   useEffect(() => {
     //se carga las cosas que necesita para renderizarse(al montarse)
     dispatch(getDogs()); //
+    // dispatch(getByRaza()); //
     //return () => {
     //  clearDetail(); //si quiero alguna accion a la hr de desmontarme, la retorno acá (con un callback)
     //};
@@ -56,9 +52,9 @@ function Home() {
         </button>
       </NavLink>
 
-      <div className={style.navBar}>
+      {/* <div className={style.navBar}>
         <NavBar handleChange={handleChange} handleSubmit={handleSubmit} />
-      </div>
+      </div> */}
       <div className={style.cards}>
         <CardsContainer allDogs={allDogs} />
       </div>

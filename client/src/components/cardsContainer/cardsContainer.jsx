@@ -33,7 +33,6 @@ function CardsContainer({ allDogs }) {
   const indexOfLastCard = currentPage * cardsPerPage;
   const indexOfFirstCard = indexOfLastCard - cardsPerPage;
   const displayedCards = allDogs.slice(indexOfFirstCard, indexOfLastCard);
-
   const pageNumbers = Math.ceil(allDogs.length / cardsPerPage);
 
   const renderPageNumbers = () => {
@@ -78,7 +77,7 @@ function CardsContainer({ allDogs }) {
   return (
     <div>
       <div className={style.texto}>
-        {allDogs.length > 7 ? (
+        {allDogs.length > 0 ? (
           displayedCards?.map((dog) => <Card key={dog.id} dog={dog} />)
         ) : (
           <h1>

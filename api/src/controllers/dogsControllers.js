@@ -1,6 +1,6 @@
 const axios = require("axios");
 const { Dog, Temperament } = require("../db");
-const { Op, Sequelize } = require("sequelize");
+const { Op } = require("sequelize");
 
 const getDogByName = async (name) => {
   try {

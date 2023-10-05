@@ -59,3 +59,14 @@
   border-radius: 5px; /* Add rounded corners */
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Add a shadow for contrast */
 }
+.navBar {
+  border: none;
+  outline: auto;
+  justify-self: center;
+  justify-content: space-around;
+  width: 350px;
+  line-height: 5px;
+  height: 80px;
+
+  border-radius: 20px 20px 20px 20px;
+}

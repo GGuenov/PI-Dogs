@@ -19,9 +19,11 @@ export function getDogs() {
   };
 }
 export function getByRaza(name) {
+  console.log(name);
+
   return async function (dispatch) {
-    const response = await axios.get(`/dogs/:${name}`);
-    if (!response) response = await axios.get(`/cats/:${name}`);
+    const response = await axios.get(`/dogs/${name}`);
+
     return dispatch({
       type: GET_BY_RAZA,
       payload: response.data,
