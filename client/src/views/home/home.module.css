@@ -26,7 +26,16 @@
 }
 
 .button {
-  margin-top: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  color: #000000;
+  background-color: rgb(202, 245, 202);
+}
+.button:hover {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  color: #dfcccc;
+  background-color: rgb(115, 103, 139);
 }
 
 .Slider {

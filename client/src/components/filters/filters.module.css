@@ -4,10 +4,8 @@
 .section {
   margin-top: 15px;
 }
-.livianos {
-  margin-top: 10px;
-}
-.slider {
+
+/* .slider {
   display: contents;
   justify-content: space-around;
 
@@ -17,10 +15,10 @@
   height: 10px;
 
   background-color: #fff;
-  border: 1px solid #adb5bd;
+  border: 1px solid #1069c3;
   transition: 0.4s;
   border-radius: 300px;
-}
+} */
 .Slider {
   width: 1000px;
   height: 10px;
@@ -29,6 +27,28 @@
   margin-right: 5px; /* Espaciado entre puntos */
   cursor: pointer; /* Cambia el cursor al pasar el mouse */
   /* transform: rotate(270deg); */
+}
+.Slider:hover {
+  background-color: #d42e2e; /* Color de los puntos */
+  border-radius: 0%; /* Puntos redondeados */
+  margin-right: 5px; /* Espaciado entre puntos */
+  cursor: pointer; /* Cambia el cursor al pasar el mouse */
+  /* transform: rotate(270deg); */
+}
+.downSlider:hover {
+  background-color: #f4c5c5; /* Color de los puntos */
+
+  cursor: pointer; /* Cambia el cursor al pasar el mouse */
+  /* transform: rotate(270deg); */
+}
+.downSlider {
+  width: 1000px;
+  height: 10px;
+  border-radius: 0%;
+  margin-right: 5px;
+  cursor: pointer;
+  /* display: flex;
+  justify-self: end; */
 }
 .container {
   margin-top: 10px;

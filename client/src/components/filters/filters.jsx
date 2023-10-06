@@ -173,7 +173,7 @@ const Bar = () => {
           <div className={style.diver}>
             <img height={50} src={bajo} />
             <Slider
-              className={style.Slider}
+              className={style.downSlider}
               range
               min={0}
               step={5}
@@ -186,17 +186,19 @@ const Bar = () => {
           </div>
         )}
       </div>
-      <div className={style.navBar}>
-        <h2>Buscá por Nombre</h2>
-        <form onSubmit={handlerSubmit}>
-          <input
-            placeholder="indique la raza"
-            type="search"
-            onChange={handlerChange}
-          />
-          <button type="submit">Buscar</button>
-        </form>
-      </div>
+      {isHomeRoute && (
+        <div className={style.navBar}>
+          <h2>Buscá por Nombre</h2>
+          <form onSubmit={handlerSubmit}>
+            <input
+              placeholder="indique la raza"
+              type="search"
+              onChange={handlerChange}
+            />
+            <button type="submit">Buscar</button>
+          </form>
+        </div>
+      )}
     </div>
   );
 };

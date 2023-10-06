@@ -1,4 +1,4 @@
-import styles from "./details.module.css";
+import style from "./details.module.css";
 import axios from "axios";
 
 import { useEffect, useState } from "react";
@@ -53,39 +53,43 @@ const Details = () => {
       <div>
         {id < 2 ? null : (
           <NavLink to={`/details/${idA}`}>
-            <button className={styles.button}>Anterior!</button>
+            <button className={style.button}>Anterior!</button>
           </NavLink>
         )}
         <NavLink to="/home">
-          <button className={styles.button}>Volver!</button>
+          <button className={style.button}>Volver!</button>
         </NavLink>
         {Number(id) === dogs.length ? null : (
           <NavLink to={`/details/${idS}`}>
-            <button className={styles.button}>Siguiente!</button>
+            <button className={style.button}>Siguiente!</button>
           </NavLink>
         )}
       </div>
-      <div className={styles.container}>
-        <h1>Details:</h1>
-        <h3>Id | {id}</h3>
-        <h2>{name}</h2>
-        <div className={styles.altPes}>
-          <h3>Peso Máxima | {weightMax}lb</h3>
-          <h3>Mínima | {weightMin}lb</h3>
-          <h3>Altura Máximo | {heightMax}cm</h3>
-          <h3> Mínimo | {heightMin}cm</h3>
+      <div className={style.container}>
+        <div className={style.text}>
+          <h1>Details:</h1>
+          {/* <h3>Id | {id}</h3> */}
+          <h2>{name}</h2>
+          <div className={style.altPes}>
+            <h3>Peso Máxima | {weightMax}lb</h3>
+            <h3>Mínima | {weightMin}lb</h3>
+            <h3>Altura Máximo | {heightMax}cm</h3>
+            <h3> Mínimo | {heightMin}cm</h3>
+          </div>
+          <h3>Temperamento/s | {temperament?.map((temp) => temp + ", ")}</h3>
+          <h3>Espectativa de vida | {lifeSpan}</h3>
         </div>
-        <h3>Temperamento/s | {temperament?.map((temp) => temp + ", ")}</h3>
-        <h3>Espectativa de vida | {lifeSpan}</h3>
-        <img
-          className={styles.image}
-          src={imageJpg}
-          onError={(e) => {
-            e.target.src = null;
-            e.target.src = imagePng;
-          }}
-          alt={name}
-        />
+        <div className={style.imageContainer}>
+          <img
+            className={style.image}
+            src={imageJpg}
+            onError={(e) => {
+              e.target.src = null;
+              e.target.src = imagePng;
+            }}
+            alt={name}
+          />
+        </div>
       </div>
     </div>
   );

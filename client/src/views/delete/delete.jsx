@@ -52,17 +52,20 @@ const Delete = () => {
   console.log(listaInTheOven);
   console.log(form);
   return (
-    <div className={style.button}>
-      <NavLink to="/home">
-        <button>Volver!</button>
-      </NavLink>
-      <form onSubmit={submitHandler}>
-        <select value={form} onChange={changeHandler}>
+    <div className={style.container}>
+      <div>
+        <NavLink to="/home">
+          <button>Volver!</button>
+        </NavLink>
+      </div>
+      <form onSubmit={submitHandler} className={style.form}>
+        <h2>Seleccione la raza que quiere eliminar</h2>
+        <select className={style.select} value={form} onChange={changeHandler}>
           <option value="">Elija una raza</option>
           {listaInTheOven}
         </select>
 
-        <button>Borrar raza</button>
+        <button className={style.deleteButton}>Borrar raza</button>
       </form>
     </div>
   );
