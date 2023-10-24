@@ -204,7 +204,7 @@ const Creator = () => {
               <span className={style.errores}>{errors.lifeSpan}</span>
             )}
           </div>
-          <div>
+          <div className={style.inputImg}>
             <label>Imagen</label>
             <input
               type="url"
