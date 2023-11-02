@@ -66,9 +66,9 @@ const Editor = () => {
         weightMin,
         weightMax,
       });
-      console.log(form);
+      // console.log(form);
       alert("Perro editado exitosamente. Gran trabajo!");
-      console.log(response);
+      // console.log(response);
       resetForm();
     } catch (error) {
       console.error(error);
@@ -152,10 +152,10 @@ const Editor = () => {
   const cuartoTemp = form.name
     ? selfFill[0].temperament[3]
     : "Indiqui un temperamento";
-  console.log(form.name);
-  console.log(names);
-  console.log(selfFill);
-  console.log(form);
+  // console.log(form.name);
+  // console.log(names);
+  // console.log(selfFill);
+  // console.log(form);
   return (
     <div>
       <NavLink to="/home">

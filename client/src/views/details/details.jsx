@@ -9,7 +9,7 @@ const Details = () => {
   const { id } = useParams();
   const [dogs, setDogs] = useState([]);
   const [loading, setLoading] = useState(true);
-  console.log(dogs);
+  // console.log(dogs);
 
   const URL = `/dogs/`;
   useEffect(() => {

@@ -73,9 +73,9 @@ const Creator = () => {
         weightMin,
         weightMax,
       });
-      console.log(form);
+      // console.log(form);
       alert("Perro creado exitosamente. Gran trabajo!");
-      console.log(response);
+      // console.log(response);
       resetForm();
     } catch (error) {
       console.error(error);
@@ -112,8 +112,8 @@ const Creator = () => {
   });
   // const tidySelected = se;
 
-  console.log(temps);
-  console.log(selected);
+  // console.log(temps);
+  // console.log(selected);
 
   const handleSelect = (e) => {
     e.preventDefault();

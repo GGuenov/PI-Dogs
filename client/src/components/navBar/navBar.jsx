@@ -12,13 +12,13 @@ function NavBar() {
   const dispatch = useDispatch();
 
   const handlerSubmit = async (e) => {
-    console.log(name);
+    // console.log(name);
     e.preventDefault();
 
     try {
       const response = await axios.get(`/dogs/${name}`);
-      console.log(`/dogs/${name}`);
-      console.log(response.data);
+      // console.log(`/dogs/${name}`);
+      // console.log(response.data);
 
       if (response.data.length === 0) alert(`La raza ${name} no existe`);
 

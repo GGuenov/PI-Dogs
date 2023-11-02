@@ -19,7 +19,7 @@ export function getDogs() {
   };
 }
 export function getByRaza(name) {
-  console.log(name);
+  // console.log(name);
 
   return async function (dispatch) {
     const response = await axios.get(`/dogs/${name}`);
@@ -31,14 +31,14 @@ export function getByRaza(name) {
   };
 }
 export const weightRanger = (newRange) => {
-  console.log(newRange);
+  // console.log(newRange);
   return {
     type: FILTER_BY_WEIGHT_RANGE,
     payload: newRange,
   };
 };
 export const heightRanger = (newRange) => {
-  console.log(newRange);
+  // console.log(newRange);
   return {
     type: FILTER_BY_HEIGHT_RANGE,
     payload: newRange,

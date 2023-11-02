@@ -25,8 +25,8 @@ function rootReducer(state = initialState, action) {
         dogs: action.payload,
       };
     case GET_BY_RAZA:
-      console.log(state.allDogs);
-      console.log(state.dogs);
+      // console.log(state.allDogs);
+      // console.log(state.dogs);
       return {
         ...state,
         allDogs: action.payload,

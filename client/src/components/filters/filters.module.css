@@ -5,41 +5,24 @@
   margin-top: 15px;
 }
 
-/* .slider {
-  display: contents;
-  justify-content: space-around;
-
-  position: absolute;
-  cursor: cell;
-  width: 50%;
-  height: 10px;
-
-  background-color: #fff;
-  border: 1px solid #1069c3;
-  transition: 0.4s;
-  border-radius: 300px;
-} */
 .Slider {
   width: 1000px;
   height: 10px;
-  background-color: #ffffff; /* Color de los puntos */
-  border-radius: 0%; /* Puntos redondeados */
-  margin-right: 5px; /* Espaciado entre puntos */
-  cursor: pointer; /* Cambia el cursor al pasar el mouse */
-  /* transform: rotate(270deg); */
+  background-color: #ffffff;
+  border-radius: 0%;
+  margin-right: 5px;
+  cursor: pointer;
 }
 .Slider:hover {
-  background-color: #d42e2e; /* Color de los puntos */
-  border-radius: 0%; /* Puntos redondeados */
-  margin-right: 5px; /* Espaciado entre puntos */
-  cursor: pointer; /* Cambia el cursor al pasar el mouse */
-  /* transform: rotate(270deg); */
+  background-color: #d42e2e;
+  border-radius: 0%;
+  margin-right: 5px;
+  cursor: pointer;
 }
 .downSlider:hover {
-  background-color: #f4c5c5; /* Color de los puntos */
+  background-color: #f4c5c5;
 
-  cursor: pointer; /* Cambia el cursor al pasar el mouse */
-  /* transform: rotate(270deg); */
+  cursor: pointer;
 }
 .downSlider {
   width: 1000px;
@@ -47,8 +30,6 @@
   border-radius: 0%;
   margin-right: 5px;
   cursor: pointer;
-  /* display: flex;
-  justify-self: end; */
 }
 .container {
   margin-top: 10px;
@@ -60,7 +41,6 @@
 }
 .diver {
   margin-top: 40px;
-  /* border: #ad1128; */
   display: flex;
   justify-content: space-around;
   resize: both;
@@ -70,14 +50,12 @@
   margin-top: 50px;
   position: absolute;
   font-size: large;
-  /* top: 0px; */
-  left: 0; /* Adjust the left value to center it horizontally if needed */
-  width: 100%; /* Make the label span the full width of the .diver div */
-  text-align: center; /* Center the text horizontally */
-
-  padding: 5px; /* Add padding for better visibility */
-  border-radius: 5px; /* Add rounded corners */
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Add a shadow for contrast */
+  left: 0;
+  width: 100%;
+  text-align: center;
+  padding: 5px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }
 .navBar {
   border: none;
@@ -89,4 +67,20 @@
   height: 80px;
 
   border-radius: 20px 20px 20px 20px;
+}
+.single-slider {
+  display: flex;
+  flex-direction: column;
+}
+
+.slider-min {
+  position: relative;
+  margin: 10px 0;
+  z-index: 1;
+}
+
+.slider-max {
+  position: relative;
+  margin: -10px 0;
+  z-index: 2;
 }

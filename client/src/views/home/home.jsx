@@ -17,7 +17,7 @@ function Home() {
     //};
   }, [dispatch]); //el cuándo, va entre []
 
-  console.log(allDogs);
+  // console.log(allDogs);
 
   return (
     <div className={style.home}>

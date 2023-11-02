@@ -77,12 +77,12 @@ const Bar = () => {
   const [name, setName] = useState("");
   const handlerSubmit = (e) => {
     e.preventDefault();
-    console.log(name);
+    // console.log(name);
     dispatch(getByRaza(name));
   };
   const handlerChange = (e) => {
     // e.preventDefault();
-    console.log(e.target.value);
+    // console.log(e.target.value);
     setName(e.target.value);
   };
 

@@ -23,7 +23,7 @@ const Delete = () => {
     bringBreedsDB();
   }, []);
 
-  console.log(inTheOven);
+  // console.log(inTheOven);
   const listaInTheOven = inTheOven.map((e) => (
     <option key={e.key} value={e.value}>
       {e.name}
@@ -34,7 +34,7 @@ const Delete = () => {
     e.preventDefault();
     try {
       const response = await axios.delete(`/dogs/delete/${form}`);
-      console.log(response);
+      // console.log(response);
       alert(`Era ${form}, ahora es pollo!!`);
       resetForm();
     } catch (error) {
@@ -45,12 +45,12 @@ const Delete = () => {
 
   const changeHandler = (e) => {
     // e.preventDefault();
-    console.log(e.target.value);
+    // console.log(e.target.value);
     setForm(e.target.value);
   };
 
-  console.log(listaInTheOven);
-  console.log(form);
+  // console.log(listaInTheOven);
+  // console.log(form);
   return (
     <div className={style.container}>
       <div>
